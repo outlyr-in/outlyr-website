@@ -1,10 +1,16 @@
 import { config, fields, collection } from '@keystatic/core';
 
+const isProd = process.env.NODE_ENV === 'production';
+
 export default config({
-  storage: {
-    kind: 'github',
-    repo: 'outlyr-in/outlyr-website',
-  },
+  storage: isProd
+    ? {
+        kind: 'github',
+        repo: 'outlyr-in/outlyr-website',
+      }
+    : {
+        kind: 'local',
+      },
   collections: {
     posts: collection({
       label: 'Blog Posts',
