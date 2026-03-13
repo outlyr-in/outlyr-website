@@ -9,7 +9,4 @@ export default defineConfig({
   output: 'server',
   adapter: vercel(),
   integrations: [mdx(), react(), keystatic()],
-  image: {
-    service: { entrypoint: 'astro/assets/services/noop' }
-  },
 });
