@@ -123,7 +123,8 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
           </label>
           <textarea class="field-textarea" id="building" name="building"
             placeholder="Be specific. Vague answers tell us nothing."
-            rows="5" required></textarea>
+            rows="5" maxlength="1000" required></textarea>
+            <div class="char-counter" data-for="building"><span class="char-count">0</span> / 1000</div>
         </div>
 
         <!-- 08 What you wish someone told you -->
@@ -133,7 +134,8 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
           </label>
           <textarea class="field-textarea" id="lesson" name="lesson"
             placeholder="Take your time with this one."
-            rows="5" required></textarea>
+            rows="5" maxlength="1000" required></textarea>
+            <div class="char-counter" data-for="building"><span class="char-count">0</span> / 1000</div>
         </div>
 
         <!-- 09 Who you're afraid of becoming -->
@@ -143,7 +145,8 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
           </label>
           <textarea class="field-textarea" id="fear" name="fear"
             placeholder="Honest answers only."
-            rows="5" required></textarea>
+            rows="5" maxlength="1000" required></textarea>
+            <div class="char-counter" data-for="building"><span class="char-count">0</span> / 1000</div>
         </div>
 
         <!-- 10 What you'd bring -->
@@ -153,7 +156,8 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
           </label>
           <textarea class="field-textarea" id="bring" name="bring"
             placeholder="Not what you've done — what you bring."
-            rows="4" required></textarea>
+            rows="4" maxlength="1000" required></textarea>
+            <div class="char-counter" data-for="building"><span class="char-count">0</span> / 1000</div>
         </div>
 
         <!-- 11 Email -->
@@ -192,7 +196,6 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
         <p class="success-check">✓</p>
         <h2 class="success-title">Application Received.</h2>
         <p class="success-body">
-          We'll review it within 7 days.<br>
           If you're in, you'll hear from us on WhatsApp with a private invite.<br>
           If not — no hard feelings. Keep building.
         </p>
@@ -364,6 +367,18 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
     margin-top: 8px; display: block;
   }
 
+.char-counter {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px; letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--t30);
+  text-align: right;
+  margin-top: 6px;
+  transition: color 0.3s;
+}
+.char-counter.near-limit { color: var(--acc); }
+.char-counter.at-limit { color: rgba(220, 80, 80, 0.8); }
+
   /* ── SUBMIT ── */
   .form-footer {
     display: flex; flex-direction: column;
@@ -477,7 +492,7 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
         valid = false;
       } else if (field.type === 'number') {
         const val = parseInt(field.value);
-        if (isNaN(val) || val < 16 || val > 99) {
+        if (isNaN(val)) {
           showError(field, 'Please enter a valid age');
           if (!firstError) firstError = field;
           valid = false;
@@ -516,6 +531,24 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
 
     return valid;
   }
+    // Character counters
+document.querySelectorAll('.field-textarea[maxlength]').forEach(function(textarea) {
+  const counter = document.querySelector('.char-counter[data-for="' + textarea.id + '"]');
+  if (!counter) return;
+  const max = parseInt(textarea.getAttribute('maxlength'));
+  const countEl = counter.querySelector('.char-count');
+
+  textarea.addEventListener('input', function() {
+    const len = this.value.length;
+    countEl.textContent = len;
+    counter.classList.remove('near-limit', 'at-limit');
+    if (len >= max) {
+      counter.classList.add('at-limit');
+    } else if (len >= max * 0.85) {
+      counter.classList.add('near-limit');
+    }
+  });
+});
 
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -544,4 +577,6 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
       submitBtn.disabled = false;
     }
   });
+
+
 </script>
