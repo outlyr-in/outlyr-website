@@ -1,0 +1,133 @@
+---
+interface Props {
+  title: string;
+  activeNav?: string;
+}
+const { title, activeNav } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style is:global>
+    :root {
+      --bg:  #080808; --bg2: #0c0c0c; --bg3: #111111;
+      --acc: #c8a96e;
+      --a40: rgba(200,184,154,0.40); --a20: rgba(200,184,154,0.20);
+      --a10: rgba(200,184,154,0.10); --a05: rgba(200,184,154,0.05);
+      --tx:  #ede8e1; --t80: rgba(237,232,225,0.80);
+      --t55: rgba(237,232,225,0.55); --t30: rgba(237,232,225,0.30);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--tx);
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300; overflow-x: hidden; cursor: crosshair;
+    }
+    a, button { cursor: crosshair; }
+    body::after {
+      content: ''; position: fixed; inset: 0; z-index: 9999;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      padding: 24px 56px;
+      display: flex; justify-content: space-between; align-items: center;
+      background: linear-gradient(to bottom, rgba(8,8,8,0.96), transparent);
+      border-bottom: 1px solid transparent;
+    }
+    nav.scrolled {
+      background: rgba(8,8,8,0.55);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      border-bottom-color: rgba(200,184,154,0.08);
+    }
+    nav.frosted {
+      background: rgba(8,8,8,0.85);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      border-bottom-color: var(--a10);
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px; letter-spacing: 0.32em;
+      color: var(--acc); text-decoration: none;
+    }
+    .nav-center {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      font-family: 'DM Mono', monospace;
+      font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--t55);
+    }
+    .nav-right {
+      font-family: 'DM Mono', monospace;
+      font-size: 16px; letter-spacing: 0.18em; text-transform: uppercase;
+      display: flex; gap: 50px;
+    }
+    .nav-right a { color: var(--t55); text-decoration: none; transition: color 0.3s; }
+    .nav-right a:hover, .nav-right a.nav-active { color: var(--acc); }
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 15px; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--acc); display: flex; align-items: center; gap: 14px;
+    }
+    .tag::before {
+      content: ''; width: 24px; height: 1px;
+      background: var(--a40); display: block; flex-shrink: 0;
+    }
+    section { padding: 128px 56px; border-top: 1px solid var(--a10); position: relative; }
+
+    footer { border-top: 1px solid var(--a10); padding: 32px 56px; display: flex; align-items: center; }
+    .f-links { flex: 1; display: flex; gap: 28px; list-style: none; justify-content: left; }
+    .f-links a { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--t55); text-decoration: none; transition: color 0.3s; }
+    .f-links a:hover { color: var(--acc); }
+    .f-copy { flex: 1; text-align: right; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--t55); }
+    @media (max-width: 960px) {
+      nav { padding: 20px 24px; }
+      .nav-center { display: none; }
+      section { padding: 88px 24px; }
+      footer { flex-direction: column; gap: 20px; text-align: center; padding: 32px 24px; }
+      .f-copy { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="/" class="nav-logo">OUTLYR</a>
+  <span class="nav-center">Est. 2026 — India</span>
+  <div class="nav-right">
+    <a href="/the-circle" class={activeNav === 'circle' ? 'nav-active' : ''}>The Circle</a>
+    <a href="/journal" class={activeNav === 'journal' ? 'nav-active' : ''}>Journal</a>
+  </div>
+</nav>
+
+<slot />
+
+<footer>
+  <ul class="f-links">
+    <li><a href="https://instagram.com/outlyr.in" target="_blank">Instagram</a></li>
+    <li><a href="/journal">Journal</a></li>
+    <li><a href="mailto:hello@outlyr.in">Contact</a></li>
+  </ul>
+  <span class="f-copy">© 2026 Outlyr. All rights reserved.</span>
+</footer>
+
+<script is:inline>
+  var nav = document.getElementById('main-nav');
+  if (!document.querySelector('.hero')) {
+    nav.classList.add('frosted');
+  }
+  window.addEventListener('scroll', function() {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,326 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
+---
+
+<BaseLayout title="Apply — The Circle / OUTLYR" activeNav="circle">
+
+<header class="page-header">
+  <div class="page-header-inner">
+    <p class="tag">// Application</p>
+    <h1 class="page-title">The<br><em>Circle.</em></h1>
+    <p class="page-sub">
+      This is not a waitlist. It is a review.<br>
+      Every application is read. Most are declined.<br>
+      We are not looking for the most impressive —
+      we are looking for the most <em>real.</em>
+    </p>
+  </div>
+</header>
+
+<section class="form-section" style="border-top: none;">
+  <div class="form-layout">
+
+    <aside class="form-context">
+      <div class="context-block">
+        <p class="context-label">What we look for</p>
+        <ul class="context-list">
+          <li>Quality of thinking over credentials</li>
+          <li>Direction of movement, not current status</li>
+          <li>Bias toward building, not just observing</li>
+          <li>Honesty about where you actually are</li>
+        </ul>
+      </div>
+      <div class="context-block">
+        <p class="context-label">What happens next</p>
+        <ul class="context-list">
+          <li>Application reviewed within 7 days</li>
+          <li>Accepted members receive a private invite link</li>
+          <li>No explanations given for declined applications</li>
+          <li>You may reapply after 60 days</li>
+        </ul>
+      </div>
+      <p class="context-note">
+        The room is only as good as the people in it.<br>
+        Standards are not negotiable.
+      </p>
+    </aside>
+
+    <div class="form-wrapper">
+      <form id="circle-form">
+        <input type="hidden" name="access_key" value={WEB3FORMS_KEY} />
+        <input type="hidden" name="subject" value="New Circle Application — OUTLYR" />
+        <input type="hidden" name="redirect" value="false" />
+        <input type="checkbox" name="botcheck" style="display:none" />
+
+        <div class="field-group">
+          <label class="field-label" for="name">
+            <span class="field-num">01</span> Full Name
+          </label>
+          <input class="field-input" type="text" id="name" name="name"
+            placeholder="Your name" required />
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="city">
+            <span class="field-num">02</span> City / Where You're Based
+          </label>
+          <input class="field-input" type="text" id="city" name="city"
+            placeholder="e.g. Nagpur, Pune, Baroda" required />
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="domain">
+            <span class="field-num">03</span> What Are You Building or Working Toward?
+          </label>
+          <input class="field-input" type="text" id="domain" name="domain"
+            placeholder="e.g. a startup, a body of work, a physical standard" required />
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="real_answer">
+            <span class="field-num">04</span> What Does "Built Not Born" Mean to You — Specifically?
+            <span class="field-hint">Not the concept. What it means in your life, right now.</span>
+          </label>
+          <textarea class="field-textarea" id="real_answer" name="real_answer"
+            placeholder="Be honest. Generic answers are easy to spot."
+            rows="5" required></textarea>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="why_circle">
+            <span class="field-num">05</span> Why Do You Want In?
+            <span class="field-hint">What are you looking for that you haven't found elsewhere?</span>
+          </label>
+          <textarea class="field-textarea" id="why_circle" name="why_circle"
+            placeholder="What does the right room actually mean to you?"
+            rows="4" required></textarea>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="link">
+            <span class="field-num">06</span> A Link — Optional
+            <span class="field-hint">Instagram, X, portfolio. Not required.</span>
+          </label>
+          <input class="field-input" type="url" id="link" name="link"
+            placeholder="https://" />
+        </div>
+
+        <div class="form-footer">
+          <button type="submit" class="submit-btn" id="submit-btn">
+            <span id="btn-text">Submit Application</span>
+            <span id="btn-arrow">↗</span>
+          </button>
+          <p class="form-disclaimer">
+            No newsletters. No data sold. Your application is read by a human.
+          </p>
+        </div>
+      </form>
+
+      <div class="success-state" id="success-state">
+        <p class="success-check">✓</p>
+        <h2 class="success-title">Application Received.</h2>
+        <p class="success-body">
+          We'll review it within 7 days.<br>
+          If you're in, you'll hear from us with a private invite.<br>
+          If not — no hard feelings. Keep building.
+        </p>
+        <a href="/" class="success-link">← Back to Outlyr</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</BaseLayout>
+
+<style>
+  /* ── PAGE HEADER ── */
+  .page-header {
+    padding: 180px 56px 80px;
+    border-bottom: 1px solid var(--a10);
+  }
+  .page-header-inner { max-width: 760px; }
+
+  .page-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 12vw, 160px);
+    line-height: 0.86; letter-spacing: 0.01em;
+    margin-top: 28px; margin-bottom: 40px;
+  }
+  .page-title em { color: var(--acc); font-style: italic; }
+
+  .page-sub {
+    font-size: clamp(22px, 2.2vw, 28px);
+    line-height: 1.68; font-style: italic; color: var(--t55);
+    max-width: 560px;
+  }
+  .page-sub em { color: var(--tx); }
+
+  /* ── LAYOUT ── */
+  .form-section { padding: 80px 56px 120px; }
+
+  .form-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 80px; align-items: start;
+  }
+
+  /* ── CONTEXT ASIDE ── */
+  .form-context {
+    position: sticky; top: 100px;
+    display: flex; flex-direction: column; gap: 48px;
+  }
+  .context-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--acc); margin-bottom: 20px;
+  }
+  .context-list {
+    list-style: none; display: flex; flex-direction: column; gap: 14px;
+  }
+  .context-list li {
+    font-size: clamp(17px, 1.5vw, 20px);
+    line-height: 1.7; font-style: italic; color: var(--t30);
+    padding-left: 18px; position: relative;
+  }
+  .context-list li::before {
+    content: '—'; position: absolute; left: 0;
+    color: var(--a40); font-style: normal;
+  }
+  .context-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.16em; line-height: 1.9;
+    text-transform: uppercase; color: var(--t30);
+    border-left: 1px solid var(--a20); padding-left: 16px;
+  }
+
+  /* ── FORM ── */
+  #circle-form {
+    display: flex; flex-direction: column; gap: 48px;
+  }
+  .field-group {
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .field-label {
+    display: flex; flex-direction: column; gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--t55);
+  }
+  .field-num { color: var(--acc); margin-right: 10px; }
+  .field-hint {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.16em;
+    color: var(--t30); text-transform: none; margin-top: 4px;
+  }
+
+  .field-input,
+  .field-textarea {
+    background: transparent; border: none;
+    border-bottom: 1px solid var(--a20);
+    padding: 14px 0; width: 100%;
+    color: var(--tx);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 2.2vw, 28px);
+    font-weight: 300; font-style: italic;
+    outline: none; transition: border-color 0.3s;
+    caret-color: var(--acc);
+  }
+  .field-input::placeholder,
+  .field-textarea::placeholder { color: var(--t30); font-style: italic; }
+  .field-input:focus,
+  .field-textarea:focus { border-bottom-color: var(--acc); }
+  .field-textarea { resize: none; line-height: 1.7; }
+
+  /* ── SUBMIT ── */
+  .form-footer {
+    display: flex; flex-direction: column;
+    align-items: flex-start; gap: 20px;
+    padding-top: 16px; border-top: 1px solid var(--a10);
+  }
+  .submit-btn {
+    display: inline-flex; align-items: center; gap: 14px;
+    background: var(--acc); color: var(--bg);
+    border: 1px solid var(--acc); padding: 18px 48px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase;
+    transition: background 0.3s, color 0.3s;
+  }
+  .submit-btn:hover { background: transparent; color: var(--acc); }
+  .submit-btn:disabled { opacity: 0.5; pointer-events: none; }
+  #btn-arrow { font-size: 14px; transition: transform 0.3s; }
+  .submit-btn:hover #btn-arrow { transform: translate(3px, -3px); }
+  .form-disclaimer {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--t30); line-height: 1.8;
+  }
+
+  /* ── SUCCESS ── */
+  .success-state { display: none; padding: 80px 0; }
+  .success-state.visible { display: block; }
+  .success-check {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.3em;
+    color: var(--acc); margin-bottom: 28px;
+  }
+  .success-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    line-height: 0.9; margin-bottom: 32px;
+  }
+  .success-body {
+    font-size: clamp(22px, 2.2vw, 28px);
+    line-height: 1.85; font-style: italic;
+    color: var(--t55); margin-bottom: 40px;
+  }
+  .success-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--acc); text-decoration: none;
+    border-bottom: 1px solid var(--a20); padding-bottom: 4px;
+    transition: border-color 0.3s;
+  }
+  .success-link:hover { border-color: var(--acc); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 960px) {
+    .page-header { padding: 140px 24px 60px; }
+    .form-section { padding: 56px 24px 80px; }
+    .form-layout { grid-template-columns: 1fr; gap: 48px; }
+    .form-context { position: static; }
+  }
+</style>
+
+<script is:inline>
+  const form = document.getElementById('circle-form');
+  const successState = document.getElementById('success-state');
+  const submitBtn = document.getElementById('submit-btn');
+  const btnText = document.getElementById('btn-text');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    btnText.textContent = 'Submitting...';
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form))),
+      });
+      const json = await res.json();
+      if (json.success) {
+        form.style.display = 'none';
+        successState.classList.add('visible');
+      } else {
+        btnText.textContent = 'Something went wrong — try again';
+        submitBtn.disabled = false;
+      }
+    } catch {
+      btnText.textContent = 'Network error — try again';
+      submitBtn.disabled = false;
+    }
+  });
+</script>
