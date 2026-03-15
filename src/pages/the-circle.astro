@@ -10,10 +10,9 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
     <p class="tag">// Application</p>
     <h1 class="page-title">The<br><em>Circle.</em></h1>
     <p class="page-sub">
-      This is not a waitlist. It is a review.<br>
-      Every application is read. Most are declined.<br>
-      We are not looking for the most impressive —
-      we are looking for the most <em>real.</em>
+      This is not a form. It is a conversation.<br><br>
+      The Circle is a private, reviewed community. We do not select based on what you have achieved, where you studied, or how many people follow you. We select based on one thing — <em>quality of mind and direction of movement.</em><br><br>
+      Answer honestly. There are no right answers, but there are real ones. If you find yourself writing what sounds good rather than what is true — stop, and start again. Take your time.
     </p>
   </div>
 </header>
@@ -27,17 +26,14 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
         <ul class="context-list">
           <li>Quality of thinking over credentials</li>
           <li>Direction of movement, not current status</li>
-          <li>Bias toward building, not just observing</li>
+          <li>Bias toward contributing, not just observing</li>
           <li>Honesty about where you actually are</li>
         </ul>
       </div>
       <div class="context-block">
         <p class="context-label">What happens next</p>
         <ul class="context-list">
-          <li>Application reviewed within 7 days</li>
-          <li>Accepted members receive a private invite link</li>
-          <li>No explanations given for declined applications</li>
-          <li>You may reapply after 60 days</li>
+          <li>Accepted members receive a private invite</li>
         </ul>
       </div>
       <p class="context-note">
@@ -53,60 +49,135 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
         <input type="hidden" name="redirect" value="false" />
         <input type="checkbox" name="botcheck" style="display:none" />
 
+        <!-- 01 Name -->
         <div class="field-group">
           <label class="field-label" for="name">
-            <span class="field-num">01</span> Full Name
+            <span class="label-line"><span class="field-num">01</span> Name <span class="req">*</span></span>
           </label>
           <input class="field-input" type="text" id="name" name="name"
-            placeholder="Your name" required />
+            placeholder="Your full name" required />
         </div>
 
+        <!-- 02 City -->
         <div class="field-group">
           <label class="field-label" for="city">
-            <span class="field-num">02</span> City / Where You're Based
+            <span class="label-line"><span class="field-num">02</span> City <span class="req">*</span></span>
           </label>
           <input class="field-input" type="text" id="city" name="city"
-            placeholder="e.g. Nagpur, Pune, Baroda" required />
+            placeholder="Where you're based" required />
         </div>
 
+        <!-- 03 Age -->
         <div class="field-group">
-          <label class="field-label" for="domain">
-            <span class="field-num">03</span> What Are You Building or Working Toward?
+          <label class="field-label" for="age">
+            <span class="label-line"><span class="field-num">03</span> Age <span class="req">*</span></span>
           </label>
-          <input class="field-input" type="text" id="domain" name="domain"
-            placeholder="e.g. a startup, a body of work, a physical standard" required />
+          <input class="field-input" type="number" id="age" name="age"
+            placeholder="Your age" required />
         </div>
 
+        <!-- 04 What you do -->
         <div class="field-group">
-          <label class="field-label" for="real_answer">
-            <span class="field-num">04</span> What Does "Built Not Born" Mean to You — Specifically?
-            <span class="field-hint">Not the concept. What it means in your life, right now.</span>
+          <label class="field-label" for="occupation">
+            <span class="label-line"><span class="field-num">04</span> What do you do? <span class="req">*</span></span>
           </label>
-          <textarea class="field-textarea" id="real_answer" name="real_answer"
-            placeholder="Be honest. Generic answers are easy to spot."
+          <input class="field-input" type="text" id="occupation" name="occupation"
+            placeholder="Student, founder, engineer, artist, athlete..." required />
+        </div>
+
+        <!-- 05 How did you find Outlyr -->
+        <div class="field-group">
+          <label class="field-label">
+            <span class="label-line"><span class="field-num">05</span> How did you find Outlyr? <span class="req">*</span></span>
+          </label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="source" value="Instagram" />
+              <span>Instagram</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="source" value="Word of mouth" />
+              <span>Word of mouth</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="source" value="Other" />
+              <span>Other</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 06 Instagram handle -->
+        <div class="field-group">
+          <label class="field-label" for="instagram">
+            <span class="label-line"><span class="field-num">06</span> Instagram Handle</span>
+            <span class="field-hint">Optional — only if you'd like to share.</span>
+          </label>
+          <input class="field-input" type="text" id="instagram" name="instagram"
+            placeholder="@yourhandle" />
+        </div>
+
+        <!-- 07 What are you building -->
+        <div class="field-group">
+          <label class="field-label" for="building">
+            <span class="label-line"><span class="field-num">07</span> What are you building or pursuing right now — that most people around you don't know about or wouldn't understand? <span class="req">*</span></span>
+          </label>
+          <textarea class="field-textarea" id="building" name="building"
+            placeholder="Be specific. Vague answers tell us nothing."
             rows="5" required></textarea>
         </div>
 
+        <!-- 08 What you wish someone told you -->
         <div class="field-group">
-          <label class="field-label" for="why_circle">
-            <span class="field-num">05</span> Why Do You Want In?
-            <span class="field-hint">What are you looking for that you haven't found elsewhere?</span>
+          <label class="field-label" for="lesson">
+            <span class="label-line"><span class="field-num">08</span> What do you know now that you wish someone had told you three years ago — and why do you think nobody did? <span class="req">*</span></span>
           </label>
-          <textarea class="field-textarea" id="why_circle" name="why_circle"
-            placeholder="What does the right room actually mean to you?"
+          <textarea class="field-textarea" id="lesson" name="lesson"
+            placeholder="Take your time with this one."
+            rows="5" required></textarea>
+        </div>
+
+        <!-- 09 Who you're afraid of becoming -->
+        <div class="field-group">
+          <label class="field-label" for="fear">
+            <span class="label-line"><span class="field-num">09</span> What kind of person are you most afraid of turning into — and what are you actively doing to make sure you don't? <span class="req">*</span></span>
+          </label>
+          <textarea class="field-textarea" id="fear" name="fear"
+            placeholder="Honest answers only."
+            rows="5" required></textarea>
+        </div>
+
+        <!-- 10 What you'd bring -->
+        <div class="field-group">
+          <label class="field-label" for="bring">
+            <span class="label-line"><span class="field-num">10</span> What would you bring to a room of people who are all already working on something? <span class="req">*</span></span>
+          </label>
+          <textarea class="field-textarea" id="bring" name="bring"
+            placeholder="Not what you've done — what you bring."
             rows="4" required></textarea>
         </div>
 
+        <!-- 11 Email -->
         <div class="field-group">
-          <label class="field-label" for="link">
-            <span class="field-num">06</span> A Link — Optional
-            <span class="field-hint">Instagram, X, portfolio. Not required.</span>
+          <label class="field-label" for="email">
+            <span class="label-line"><span class="field-num">11</span> Email <span class="req">*</span></span>
           </label>
-          <input class="field-input" type="url" id="link" name="link"
-            placeholder="https://" />
+          <input class="field-input" type="email" id="email" name="email"
+            placeholder="your@email.com" required />
+        </div>
+
+        <!-- 12 WhatsApp -->
+        <div class="field-group">
+          <label class="field-label" for="whatsapp">
+            <span class="label-line"><span class="field-num">12</span> How do we reach you when you're selected? <span class="req">*</span></span>
+            <span class="field-hint">WhatsApp number — include country code e.g. +91 98765 43210</span>
+          </label>
+          <input class="field-input" type="tel" id="whatsapp" name="whatsapp"
+            placeholder="+91" required />
+          <p class="field-disclaimer">Your number will only be used to notify you of your selection. Nothing else.</p>
         </div>
 
         <div class="form-footer">
+          <p class="req-note"><span class="req">*</span> Required field</p>
           <button type="submit" class="submit-btn" id="submit-btn">
             <span id="btn-text">Submit Application</span>
             <span id="btn-arrow">↗</span>
@@ -122,7 +193,7 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
         <h2 class="success-title">Application Received.</h2>
         <p class="success-body">
           We'll review it within 7 days.<br>
-          If you're in, you'll hear from us with a private invite.<br>
+          If you're in, you'll hear from us on WhatsApp with a private invite.<br>
           If not — no hard feelings. Keep building.
         </p>
         <a href="/" class="success-link">← Back to Outlyr</a>
@@ -151,18 +222,18 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
   .page-title em { color: var(--acc); font-style: italic; }
 
   .page-sub {
-    font-size: clamp(22px, 2.2vw, 28px);
-    line-height: 1.68; font-style: italic; color: var(--t55);
-    max-width: 560px;
+    font-size: clamp(18px, 1.8vw, 22px);
+    line-height: 1.85; font-style: italic; color: var(--t55);
+    max-width: 640px;
   }
-  .page-sub em { color: var(--tx); }
+  .page-sub em { color: var(--tx); font-style: italic; }
 
   /* ── LAYOUT ── */
   .form-section { padding: 80px 56px 120px; }
 
   .form-layout {
     display: grid;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 280px 1fr;
     gap: 80px; align-items: start;
   }
 
@@ -180,7 +251,7 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
     list-style: none; display: flex; flex-direction: column; gap: 14px;
   }
   .context-list li {
-    font-size: clamp(17px, 1.5vw, 20px);
+    font-size: clamp(15px, 1.3vw, 18px);
     line-height: 1.7; font-style: italic; color: var(--t30);
     padding-left: 18px; position: relative;
   }
@@ -197,22 +268,39 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
 
   /* ── FORM ── */
   #circle-form {
-    display: flex; flex-direction: column; gap: 48px;
+    display: flex; flex-direction: column; gap: 56px;
   }
   .field-group {
     display: flex; flex-direction: column; gap: 12px;
   }
   .field-label {
-    display: flex; flex-direction: column; gap: 6px;
+    display: flex; flex-direction: column; gap: 8px;
     font-family: 'DM Mono', monospace;
-    font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase;
-    color: var(--t55);
+    font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--t55); line-height: 1.7;
+  }
+  .label-line {
+    display: block;
   }
   .field-num { color: var(--acc); margin-right: 10px; }
-  .field-hint {
+  .req { color: var(--acc); margin-left: 4px; }
+  .req-note {
     font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--t30);
+    margin-bottom: 8px;
+  }
+  .field-hint {
+    font-family: 'DM Mono', monospace;  
     font-size: 9px; letter-spacing: 0.16em;
-    color: var(--t30); text-transform: none; margin-top: 4px;
+    color: var(--t30); text-transform: none; margin-top: 2px;
+  }
+  .field-disclaimer {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.14em;
+    color: var(--t30); text-transform: uppercase;
+    margin-top: 8px; line-height: 1.7;
+    border-left: 1px solid var(--a20); padding-left: 12px;
   }
 
   .field-input,
@@ -221,9 +309,9 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
     border-bottom: 1px solid var(--a20);
     padding: 14px 0; width: 100%;
     color: var(--tx);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(22px, 2.2vw, 28px);
-    font-weight: 300; font-style: italic;
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(14px, 1.2vw, 16px);
+    font-weight: 300; font-style: normal;
     outline: none; transition: border-color 0.3s;
     caret-color: var(--acc);
   }
@@ -231,13 +319,57 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
   .field-textarea::placeholder { color: var(--t30); font-style: italic; }
   .field-input:focus,
   .field-textarea:focus { border-bottom-color: var(--acc); }
-  .field-textarea { resize: none; line-height: 1.7; }
+  .field-textarea { resize: none; line-height: 1.75; }
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; }
+  input[type=number] { -moz-appearance: textfield; }
+
+  /* ── RADIO GROUP ── */
+  .radio-group {
+    display: flex; gap: 32px; flex-wrap: wrap;
+    padding: 8px 0;
+  }
+  .radio-label {
+    display: flex; align-items: center; gap: 12px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 2vw, 26px);
+    font-style: italic; color: var(--t55);
+    cursor: crosshair; transition: color 0.3s;
+  }
+  .radio-label:hover { color: var(--tx); }
+  .radio-label input[type="radio"] {
+    appearance: none; -webkit-appearance: none;
+    width: 14px; height: 14px;
+    border: 1px solid var(--a40); border-radius: 50%;
+    flex-shrink: 0;
+    transition: border-color 0.3s, background 0.3s;
+    cursor: crosshair;
+  }
+  .radio-label input[type="radio"]:checked {
+    border-color: var(--acc);
+    background: var(--acc);
+  }
+  .radio-label input[type="radio"]:checked + span { color: var(--tx); }
+
+  /* ── VALIDATION ── */
+  .field-error {
+    border-bottom-color: rgba(220, 80, 80, 0.6) !important;
+  }
+  .error-msg {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(220, 80, 80, 0.8);
+    margin-top: 8px; display: block;
+  }
 
   /* ── SUBMIT ── */
   .form-footer {
     display: flex; flex-direction: column;
     align-items: flex-start; gap: 20px;
-    padding-top: 16px; border-top: 1px solid var(--a10);
+    padding-top: 24px; border-top: 1px solid var(--a10);
+    margin-top: 16px;
   }
   .submit-btn {
     display: inline-flex; align-items: center; gap: 14px;
@@ -271,7 +403,7 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
     line-height: 0.9; margin-bottom: 32px;
   }
   .success-body {
-    font-size: clamp(22px, 2.2vw, 28px);
+    font-size: clamp(20px, 2vw, 26px);
     line-height: 1.85; font-style: italic;
     color: var(--t55); margin-bottom: 40px;
   }
@@ -290,6 +422,7 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
     .form-section { padding: 56px 24px 80px; }
     .form-layout { grid-template-columns: 1fr; gap: 48px; }
     .form-context { position: static; }
+    .radio-group { gap: 20px; }
   }
 </style>
 
@@ -299,8 +432,95 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
   const submitBtn = document.getElementById('submit-btn');
   const btnText = document.getElementById('btn-text');
 
-  form.addEventListener('submit', async (e) => {
+  function showError(field, message) {
+    clearError(field);
+    field.classList.add('field-error');
+    const err = document.createElement('span');
+    err.className = 'error-msg';
+    err.textContent = message;
+    field.parentNode.appendChild(err);
+  }
+
+  function clearError(field) {
+    field.classList.remove('field-error');
+    const existing = field.parentNode.querySelector('.error-msg');
+    if (existing) existing.remove();
+  }
+
+  form.querySelectorAll('.field-input, .field-textarea').forEach(function(field) {
+    field.addEventListener('input', function() { clearError(this); });
+  });
+
+  form.querySelectorAll('input[type="radio"]').forEach(function(radio) {
+    radio.addEventListener('change', function() {
+      const existing = form.querySelector('.radio-group').parentNode.querySelector('.error-msg');
+      if (existing) existing.remove();
+    });
+  });
+
+  function validateForm() {
+    let valid = true;
+    let firstError = null;
+
+    form.querySelectorAll('.field-input[required]').forEach(function(field) {
+      if (!field.value.trim()) {
+        showError(field, 'This field is required');
+        if (!firstError) firstError = field;
+        valid = false;
+      } else if (field.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value)) {
+        showError(field, 'Please enter a valid email address');
+        if (!firstError) firstError = field;
+        valid = false;
+      } else if (field.type === 'tel' && field.value.trim().length < 7) {
+        showError(field, 'Please enter a valid phone number');
+        if (!firstError) firstError = field;
+        valid = false;
+      } else if (field.type === 'number') {
+        const val = parseInt(field.value);
+        if (isNaN(val) || val < 16 || val > 99) {
+          showError(field, 'Please enter a valid age');
+          if (!firstError) firstError = field;
+          valid = false;
+        }
+      } else {
+        clearError(field);
+      }
+    });
+
+    form.querySelectorAll('.field-textarea[required]').forEach(function(field) {
+      if (!field.value.trim()) {
+        showError(field, 'This field is required');
+        if (!firstError) firstError = field;
+        valid = false;
+      } else {
+        clearError(field);
+      }
+    });
+
+    const radioChecked = form.querySelector('input[name="source"]:checked');
+    if (!radioChecked) {
+      const radioGroup = form.querySelector('.radio-group');
+      const existing = radioGroup.parentNode.querySelector('.error-msg');
+      if (existing) existing.remove();
+      const err = document.createElement('span');
+      err.className = 'error-msg';
+      err.textContent = 'Please select one option';
+      radioGroup.parentNode.appendChild(err);
+      if (!firstError) firstError = radioGroup;
+      valid = false;
+    }
+
+    if (firstError) {
+      firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    return valid;
+  }
+
+  form.addEventListener('submit', async function(e) {
     e.preventDefault();
+    if (!validateForm()) return;
+
     submitBtn.disabled = true;
     btnText.textContent = 'Submitting...';
 
@@ -314,6 +534,7 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
       if (json.success) {
         form.style.display = 'none';
         successState.classList.add('visible');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         btnText.textContent = 'Something went wrong — try again';
         submitBtn.disabled = false;
