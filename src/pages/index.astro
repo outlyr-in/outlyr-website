@@ -1,929 +1,915 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
+// No imports needed for this page
 ---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OUTLYR — Built Not Born</title>
-  <meta name="description" content="A community of deliberate builders. Not for everyone." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --black: #0a0a08;
-      --off-white: #f0ede6;
-      --warm-white: #f7f4ed;
-      --gold: #c8a96e;
-      --gold-dim: #8a6e3e;
-      --muted: #3a3830;
-      --grain-opacity: 0.045;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background-color: var(--black);
-      color: var(--off-white);
-      font-family: 'Cormorant Garamond', serif;
-      overflow-x: hidden;
-      cursor: crosshair;
-    }
-
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-      opacity: var(--grain-opacity);
-      pointer-events: none;
-      z-index: 9999;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 2rem 3rem;
-      z-index: 100;
-      transition: background 0.4s ease, backdrop-filter 0.4s ease, padding 0.4s ease, border-color 0.4s ease;
-      border-bottom: 1px solid transparent;
-    }
-    nav.scrolled {
-      background: rgba(10, 10, 8, 0.55);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      padding: 1.2rem 3rem;
-      border-bottom-color: rgba(200, 169, 110, 0.08);
-    }
-    .nav-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.6rem;
-      letter-spacing: 0.3em;
-      color: var(--off-white);
-      opacity: 0;
-      animation: fadeInDown 1s ease 0.3s forwards;
-    }
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 2.5rem;
-      opacity: 0;
-      animation: fadeInDown 1s ease 0.5s forwards;
-    }
-    .nav-link {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      color: rgba(240, 237, 230, 0.45);
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: color 0.3s;
-    }
-    .nav-link:hover { color: var(--gold); }
-    .nav-tag {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      color: var(--gold);
-      text-transform: uppercase;
-    }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-rows: 1fr auto;
-      padding: 0 3rem 4rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-bg-text {
-      position: absolute;
-      bottom: -0.1em;
-      left: -0.02em;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(18vw, 26vw, 30vw);
-      line-height: 0.85;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(200, 169, 110, 0.12);
-      pointer-events: none;
-      user-select: none;
-      letter-spacing: -0.02em;
-      opacity: 0;
-      animation: revealStroke 1.4s ease 0.8s forwards;
-    }
-    .hero-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding-top: 10rem;
-      position: relative;
-      z-index: 2;
-    }
-    .hero-eyebrow {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.35em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeInUp 1s ease 1s forwards;
-    }
-    .hero-headline {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(5rem, 14vw, 13rem);
-      line-height: 0.88;
-      letter-spacing: -0.01em;
-      color: var(--off-white);
-      opacity: 0;
-      animation: fadeInUp 1.2s ease 1.1s forwards;
-    }
-    .hero-headline em {
-      font-style: normal;
-      color: var(--gold);
-      display: block;
-    }
-    .hero-sub {
-      margin-top: 2.5rem;
-      max-width: 480px;
-      font-size: 1.2rem;
-      font-weight: 300;
-      line-height: 1.75;
-      color: rgba(240, 237, 230, 0.6);
-      opacity: 0;
-      animation: fadeInUp 1s ease 1.3s forwards;
-    }
-    .hero-sub strong { color: var(--off-white); font-weight: 400; }
-    .hero-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      position: relative;
-      z-index: 2;
-    }
-    .scroll-hint {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.3em;
-      color: var(--muted);
-      text-transform: uppercase;
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      opacity: 0;
-      animation: fadeIn 1s ease 2s forwards;
-    }
-    .hero-counter {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1rem;
-      letter-spacing: 0.2em;
-      color: var(--muted);
-      opacity: 0;
-      animation: fadeIn 1s ease 2s forwards;
-    }
-
-    /* ── DIVIDER ── */
-    .divider {
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
-      opacity: 0.4;
-    }
-
-    /* ── MANIFESTO ── */
-    .manifesto {
-      padding: 8rem 3rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: center;
-      position: relative;
-    }
-    .manifesto-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.4em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 2rem;
-    }
-    .manifesto-text {
-      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
-      font-weight: 300;
-      font-style: italic;
-      line-height: 1.65;
-      color: var(--off-white);
-    }
-    .manifesto-text strong {
-      font-style: normal;
-      font-weight: 400;
-      color: var(--gold);
-    }
-    .manifesto-right {
-      border-left: 1px solid rgba(200, 169, 110, 0.2);
-      padding-left: 4rem;
-    }
-    .manifesto-pillar { margin-bottom: 3rem; }
-    .manifesto-pillar:last-child { margin-bottom: 0; }
-    .pillar-number {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 3.5rem;
-      color: rgba(200, 169, 110, 0.15);
-      line-height: 1;
-      margin-bottom: 0.5rem;
-    }
-    .pillar-title {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.75rem;
-    }
-    .pillar-desc {
-      font-size: 1rem;
-      font-weight: 300;
-      line-height: 1.8;
-      color: rgba(240, 237, 230, 0.55);
-    }
-
-    /* ── VISION ── */
-    .vision {
-      padding: 8rem 3rem;
-      background: rgba(200, 169, 110, 0.02);
-      border-top: 1px solid rgba(200, 169, 110, 0.07);
-      border-bottom: 1px solid rgba(200, 169, 110, 0.07);
-    }
-    .vision-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .vision-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 5rem;
-    }
-    .vision-headline {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      line-height: 0.92;
-      letter-spacing: 0.02em;
-      color: var(--off-white);
-    }
-    .vision-headline span { color: var(--gold); }
-    .vision-tagline {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      font-style: italic;
-      font-weight: 300;
-      color: rgba(240, 237, 230, 0.4);
-      max-width: 280px;
-      text-align: right;
-      line-height: 1.6;
-    }
-    .vision-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      border: 1px solid rgba(200, 169, 110, 0.1);
-    }
-    .vision-block {
-      padding: 3rem 2.5rem;
-      border-right: 1px solid rgba(200, 169, 110, 0.1);
-      position: relative;
-      overflow: hidden;
-      transition: background 0.4s ease;
-    }
-    .vision-block:last-child { border-right: none; }
-    .vision-block::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--gold);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.6s ease;
-    }
-    .vision-block:hover { background: rgba(200, 169, 110, 0.04); }
-    .vision-block:hover::after { transform: scaleX(1); }
-    .vb-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.58rem;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.5rem;
-    }
-    .vb-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2rem;
-      letter-spacing: 0.05em;
-      color: var(--off-white);
-      margin-bottom: 1.2rem;
-      line-height: 1;
-    }
-    .vb-text {
-      font-size: 1rem;
-      font-weight: 300;
-      line-height: 1.85;
-      color: rgba(240, 237, 230, 0.5);
-    }
-
-    /* ── WHAT WE'RE BUILDING ── */
-    .building {
-      padding: 8rem 3rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .building-bg {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 80% 50% at 20% 50%, rgba(200, 169, 110, 0.04) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .building-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 8rem;
-      align-items: center;
-      position: relative;
-      z-index: 2;
-    }
-    .building-left {}
-    .section-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.4em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 2rem;
-    }
-    .building-headline {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.5rem, 4.5vw, 4rem);
-      line-height: 0.95;
-      letter-spacing: 0.02em;
-      color: var(--off-white);
-      margin-bottom: 2rem;
-    }
-    .building-headline span { color: var(--gold); }
-    .building-body {
-      font-size: 1.1rem;
-      font-weight: 300;
-      line-height: 1.9;
-      color: rgba(240, 237, 230, 0.55);
-    }
-    .building-body em {
-      font-style: italic;
-      color: rgba(240, 237, 230, 0.8);
-    }
-    .building-right {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-      background: rgba(200, 169, 110, 0.08);
-    }
-    .build-item {
-      background: var(--black);
-      padding: 2rem 2.5rem;
-      display: flex;
-      gap: 2rem;
-      align-items: flex-start;
-      transition: background 0.3s;
-    }
-    .build-item:hover { background: rgba(200, 169, 110, 0.03); }
-    .build-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.8rem;
-      color: rgba(200, 169, 110, 0.2);
-      line-height: 1;
-      flex-shrink: 0;
-      width: 2.5rem;
-    }
-    .build-content {}
-    .build-title {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--off-white);
-      margin-bottom: 0.6rem;
-    }
-    .build-desc {
-      font-size: 0.95rem;
-      font-weight: 300;
-      line-height: 1.75;
-      color: rgba(240, 237, 230, 0.45);
-    }
-
-    /* ── QUOTE ── */
-    .quote-strip {
-      padding: 6rem 3rem;
-      border-top: 1px solid rgba(200, 169, 110, 0.1);
-      border-bottom: 1px solid rgba(200, 169, 110, 0.1);
-      text-align: center;
-      position: relative;
-    }
-    .quote-mark {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 8rem;
-      line-height: 0;
-      color: rgba(200, 169, 110, 0.15);
-      position: absolute;
-      top: 4rem;
-      left: 3rem;
-    }
-    .quote-text {
-      font-size: clamp(1.4rem, 3vw, 2.2rem);
-      font-style: italic;
-      font-weight: 300;
-      line-height: 1.6;
-      max-width: 700px;
-      margin: 0 auto 1.5rem;
-      color: var(--off-white);
-    }
-    .quote-attr {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.4em;
-      color: var(--gold);
-      text-transform: uppercase;
-    }
-
-    /* ── COMMUNITY ── */
-    .community {
-      padding: 8rem 3rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .community-bg {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 60% 60% at 50% 0%, rgba(200, 169, 110, 0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .community-inner {
-      max-width: 860px;
-      margin: 0 auto;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
-    .community-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.5em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-    }
-    .community-headline {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(3rem, 7vw, 6rem);
-      line-height: 0.92;
-      letter-spacing: 0.02em;
-      color: var(--off-white);
-      margin-bottom: 2.5rem;
-    }
-    .community-headline span { color: var(--gold); }
-    .community-body {
-      font-size: 1.15rem;
-      font-weight: 300;
-      line-height: 1.85;
-      color: rgba(240, 237, 230, 0.6);
-      max-width: 620px;
-      margin: 0 auto 4rem;
-    }
-    .community-body em { font-style: italic; color: var(--off-white); }
-    .community-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5px;
-      margin-bottom: 5rem;
-      border: 1px solid rgba(200, 169, 110, 0.12);
-    }
-    .c-card {
-      padding: 2.5rem 2rem;
-      background: rgba(200, 169, 110, 0.03);
-      transition: background 0.4s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .c-card::before {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 1px;
-      background: var(--gold);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.5s ease;
-    }
-    .c-card:hover { background: rgba(200, 169, 110, 0.07); }
-    .c-card:hover::before { transform: scaleX(1); }
-    .c-card-icon {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.5rem;
-      color: rgba(200, 169, 110, 0.25);
-      margin-bottom: 1rem;
-      letter-spacing: 0.1em;
-    }
-    .c-card-title {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-    .c-card-desc {
-      font-size: 0.95rem;
-      font-weight: 300;
-      line-height: 1.75;
-      color: rgba(240, 237, 230, 0.5);
-    }
-
-    /* ── EMAIL FORM ── */
-    .form-wrapper {
-      display: flex;
-      gap: 0;
-      max-width: 520px;
-      margin: 0 auto;
-      border: 1px solid rgba(200, 169, 110, 0.3);
-      position: relative;
-    }
-    .form-wrapper::before {
-      content: '';
-      position: absolute;
-      inset: -4px;
-      border: 1px solid rgba(200, 169, 110, 0.08);
-      pointer-events: none;
-    }
-    .email-input {
-      flex: 1;
-      background: transparent;
-      border: none;
-      outline: none;
-      padding: 1.1rem 1.5rem;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      color: var(--off-white);
-      caret-color: var(--gold);
-    }
-    .email-input::placeholder {
-      color: rgba(240, 237, 230, 0.25);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-    }
-    .email-btn {
-      background: var(--gold);
-      border: none;
-      padding: 1.1rem 2rem;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--black);
-      cursor: crosshair;
-      transition: background 0.3s ease;
-      font-weight: 700;
-    }
-    .email-btn:hover { background: var(--off-white); }
-    .form-note {
-      margin-top: 1.2rem;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.58rem;
-      letter-spacing: 0.2em;
-      color: rgba(240, 237, 230, 0.2);
-      text-transform: uppercase;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      padding: 3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid rgba(240, 237, 230, 0.05);
-    }
-    .footer-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.2rem;
-      letter-spacing: 0.35em;
-      color: rgba(240, 237, 230, 0.25);
-    }
-    .footer-copy {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.55rem;
-      letter-spacing: 0.2em;
-      color: rgba(240, 237, 230, 0.2);
-    }
-    .footer-links {
-      display: flex;
-      gap: 2rem;
-    }
-    .footer-links a {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      color: rgba(240, 237, 230, 0.3);
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: color 0.3s;
-    }
-    .footer-links a:hover { color: var(--gold); }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-16px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    @keyframes revealStroke {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.9s ease, transform 0.9s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      nav { padding: 1.5rem; }
-      .nav-right { gap: 1.2rem; }
-      .nav-link { display: none; }
-      .hero { padding: 0 1.5rem 3rem; }
-      .manifesto { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
-      .manifesto-right { border-left: none; padding-left: 0; border-top: 1px solid rgba(200,169,110,0.2); padding-top: 3rem; }
-      .vision { padding: 5rem 1.5rem; }
-      .vision-header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-      .vision-tagline { text-align: left; }
-      .vision-grid { grid-template-columns: 1fr; }
-      .vision-block { border-right: none; border-bottom: 1px solid rgba(200,169,110,0.1); }
-      .vision-block:last-child { border-bottom: none; }
-      .building { padding: 5rem 1.5rem; }
-      .building-inner { grid-template-columns: 1fr; gap: 3rem; }
-      .community { padding: 5rem 1.5rem; }
-      .community-cards { grid-template-columns: 1fr; }
-      .quote-strip { padding: 4rem 1.5rem; }
-      footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2rem 1.5rem; }
-      .footer-links { justify-content: center; }
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav id="navbar">
-    <div class="nav-logo">OUTLYR</div>
-    <div class="nav-right">
-      <a href="/blog" class="nav-link">Journal</a>
-      <div class="nav-tag">Something is coming —</div>
-    </div>
-  </nav>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">OUTLYR</a>
+  <span class="nav-center">Est. 2026 — India</span>
+  <div class="nav-right">
+    <a href="#community">The Circle</a>
+    <a href="https://www.outlyr.in/blog">Journal</a>
+  </div>
+</nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg-text">OUTLYR</div>
-    <div class="hero-content">
-      <div class="hero-eyebrow">— Est. 2025 &nbsp;&nbsp;&nbsp; Not for everyone</div>
-      <h1 class="hero-headline">
-        Built<br>
-        <em>Not Born.</em>
-      </h1>
-      <p class="hero-sub">
-        Something is being made for those who <strong>refuse to inherit an identity</strong> — who forge it, day by day, through discipline and deliberate becoming.
+<!-- HERO -->
+<section class="hero" style="border-top:none; padding-top:0;">
+  <div class="hero-grid">
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <span class="hero-bg-word" id="heroBgWord">OUTLYR</span>
+
+  <div class="hero-body">
+    <p class="hero-kicker">// Not for everyone</p>
+    <h1 class="hero-h1">
+      Built<br>
+      <span class="g">Not</span><br>
+      <span class="o">Born.</span>
+    </h1>
+    <div class="hero-statement">
+      <p>
+        For those who understand that <strong>who you are is not what you were given</strong> —
+        it is what you have chosen, earned, and are still in the process of becoming.
+        No audience required.
       </p>
     </div>
-    <div class="hero-bottom">
-      <div class="scroll-hint">Scroll to explore</div>
-      <div class="hero-counter">001 / 004</div>
-    </div>
-  </section>
+  </div>
 
-  <div class="divider"></div>
+  <span class="hero-index">OUTLYR — 001 / 005 — IDENTITY</span>
+</section>
 
-  <!-- MANIFESTO -->
-  <section class="manifesto">
-    <div class="manifesto-left reveal">
-      <div class="manifesto-label">// The Premise</div>
-      <p class="manifesto-text">
-        Most people wear what they're told to wear.<br><br>
-        We are making something for those who understand that <strong>every choice is a statement</strong> — and silence is the loudest one of all.
+<!-- BELIEF -->
+<section class="belief reveal">
+  <div class="belief-left">
+    <p class="tag">01 — The Belief</p>
+    <h2>Your ceiling<br>is <em>yours.</em></h2>
+  </div>
+  <div class="belief-right reveal">
+    <div class="belief-line">
+      <p>
+        Not a motto. Not a poster on a gym wall.<br><br>
+        A quiet conviction that most people never fully test —
+        <strong>that what you can become is largely self-determined.</strong>
+        The variable is not talent, not birth, not circumstance.
+        It is how much you are genuinely willing to put in.
       </p>
     </div>
-    <div class="manifesto-right reveal">
-      <div class="manifesto-pillar">
-        <div class="pillar-number">01</div>
-        <div class="pillar-title">Intentionality</div>
-        <p class="pillar-desc">Nothing created for Outlyr exists by accident. Every detail is a decision, made with the full weight of conviction.</p>
-      </div>
-      <div class="manifesto-pillar">
-        <div class="pillar-number">02</div>
-        <div class="pillar-title">Permanence</div>
-        <p class="pillar-desc">Trends fade. We are building for the long game — things made to outlast the noise, the seasons, the cycles.</p>
-      </div>
-      <div class="manifesto-pillar">
-        <div class="pillar-number">03</div>
-        <div class="pillar-title">Identity</div>
-        <p class="pillar-desc">You are not a demographic. Outlyr is for those who know who they are — and are still becoming more of it.</p>
-      </div>
+    <div class="belief-line">
+      <p>
+        You already know this. You've known it for a while.
+        <strong>That's why you're still here, still at it</strong> — long after
+        the people who started with you found reasons to stop.
+        Outlyr doesn't give you this belief. It recognises it in you.
+      </p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- VISION -->
-  <section class="vision">
-    <div class="vision-inner">
-      <div class="vision-header reveal">
-        <h2 class="vision-headline">
-          The <span>Vision.</span><br>The Mission.
-        </h2>
-        <p class="vision-tagline">
-          Where we're going, and why it matters to get there right.
-        </p>
-      </div>
-      <div class="vision-grid">
-        <div class="vision-block reveal">
-          <div class="vb-label">// Vision</div>
-          <div class="vb-title">A World That Builds Itself</div>
-          <p class="vb-text">We envision a world where people stop inheriting their defaults — and start designing themselves. Where discipline is cultural, becoming is celebrated, and the builders are the ones who set the tone.</p>
-        </div>
-        <div class="vision-block reveal">
-          <div class="vb-label">// Mission</div>
-          <div class="vb-title">Tools for the Deliberate</div>
-          <p class="vb-text">Outlyr exists to create objects, experiences, and community for those in the process of becoming. Everything we make is a tool — designed to remind you who you're building into, every single day.</p>
-        </div>
-        <div class="vision-block reveal">
-          <div class="vb-label">// Identity</div>
-          <div class="vb-title">Built, Not Assigned</div>
-          <p class="vb-text">Outlyr is not a label to be worn — it's a position to be earned. You don't buy your way in. You live your way in. The brand is a reflection of the work, not a substitute for it.</p>
-        </div>
-      </div>
+<!-- ONE LEVEL DEEPER -->
+<section class="deeper">
+  <div class="deeper-top reveal">
+    <div>
+      <p class="tag">02 — The Marker</p>
+      <h2>One level<br><em>deeper.</em></h2>
     </div>
-  </section>
-
-  <!-- WHAT WE'RE BUILDING -->
-  <section class="building">
-    <div class="building-bg"></div>
-    <div class="building-inner">
-      <div class="building-left reveal">
-        <div class="section-label">// What We're Working On</div>
-        <h2 class="building-headline">
-          Something<br>is being <span>made.</span>
-        </h2>
-        <p class="building-body">
-          We're not ready to show you everything yet. But we can tell you this — <em>it's real, it's deliberate, and it's being built for people like you.</em><br><br>
-          Not for the masses. Not for the algorithm. For the ones who are serious about who they're becoming.
-        </p>
-      </div>
-      <div class="building-right reveal">
-        <div class="build-item">
-          <div class="build-num">I</div>
-          <div class="build-content">
-            <div class="build-title">A Product</div>
-            <p class="build-desc">Something physical. Something with intention in every detail. Built to last, not to trend. More when it's ready.</p>
-          </div>
-        </div>
-        <div class="build-item">
-          <div class="build-num">II</div>
-          <div class="build-content">
-            <div class="build-title">A Community</div>
-            <p class="build-desc">A private circle of builders — people who train, create, think, and build with purpose. Not a following. A foundation.</p>
-          </div>
-        </div>
-        <div class="build-item">
-          <div class="build-num">III</div>
-          <div class="build-content">
-            <div class="build-title">A Philosophy</div>
-            <p class="build-desc">Documented in public. The thinking, the process, the failures, the becoming. A record of what it looks like to build without permission.</p>
-          </div>
-        </div>
-        <div class="build-item">
-          <div class="build-num">IV</div>
-          <div class="build-content">
-            <div class="build-title">A Journal</div>
-            <p class="build-desc">Where the ideas live before they become real. Long-form. Unfiltered. Written for those who read to think, not to scroll.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- QUOTE -->
-  <section class="quote-strip">
-    <div class="quote-mark">"</div>
-    <p class="quote-text reveal">
-      The man who does not know himself has no identity to project — only borrowed signals from those around him.
+    <p class="deeper-intro">
+      The Outlyr mind doesn't react — it analyzes.
+      Doesn't judge — it understands.<br><br>
+      <strong>When everyone else has an opinion, the Outlyr person has a question:</strong>
+      why is this happening, what does it reveal, what can be learned from it.
+      That instinct — to go one level below the surface — is the sharpest marker of this tribe.
     </p>
-    <div class="quote-attr reveal">— The Outlyr Manifesto</div>
-  </section>
+  </div>
 
-  <!-- COMMUNITY -->
-  <section class="community">
-    <div class="community-bg"></div>
-    <div class="community-inner">
-      <div class="community-label reveal">// The Circle</div>
-      <h2 class="community-headline reveal">
-        A community of<br><span>deliberate builders</span>
-      </h2>
-      <p class="community-body reveal">
-        Outlyr isn't just what we're making — it's <em>who we're building it for.</em>
-        A closed circle of those who train, think, create, and build with intention.
-        No noise. No performance. Just people who take themselves seriously.
-      </p>
-      <div class="community-cards">
-        <div class="c-card reveal">
-          <div class="c-card-icon">I</div>
-          <div class="c-card-title">Inner Circle Access</div>
-          <p class="c-card-desc">First access to everything Outlyr creates — before the world knows it exists.</p>
-        </div>
-        <div class="c-card reveal">
-          <div class="c-card-icon">II</div>
-          <div class="c-card-title">The Discipline Lab</div>
-          <p class="c-card-desc">A private space for the builders — conversations on craft, discipline, and deliberate living.</p>
-        </div>
-        <div class="c-card reveal">
-          <div class="c-card-icon">III</div>
-          <div class="c-card-title">Behind the Build</div>
-          <p class="c-card-desc">Unfiltered access into how Outlyr is being made — the decisions, the failures, the process.</p>
-        </div>
-      </div>
-      <div class="form-wrapper reveal">
-        <input class="email-input" type="email" placeholder="your@email.com" />
-        <button class="email-btn" onclick="handleJoin()">Join the Circle</button>
-      </div>
-      <p class="form-note reveal">No newsletters. No spam. You'll only hear from us when it matters.</p>
+  <div class="contrast reveal">
+    <div class="contrast-col">
+      <p class="contrast-label">Everyone else</p>
+      <ul>
+        <li>Reacts to what happened</li>
+        <li>Judges the person</li>
+        <li>Talks about events</li>
+        <li>Performs the journey</li>
+        <li>Builds for the audience</li>
+        <li>Stops when it gets hard</li>
+      </ul>
     </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-logo">OUTLYR</div>
-    <div class="footer-copy">© 2025 Outlyr. All rights reserved.</div>
-    <div class="footer-links">
-      <a href="#">Instagram</a>
-      <a href="#">X</a>
-      <a href="/blog">Journal</a>
-      <a href="#">Contact</a>
+    <div class="contrast-col">
+      <p class="contrast-label">The Outlyr mind</p>
+      <ul>
+        <li>Asks why it happened</li>
+        <li>Studies the pattern</li>
+        <li>Talks about ideas</li>
+        <li>Lives the process quietly</li>
+        <li>Builds for themselves</li>
+        <li>Gets interesting when it gets hard</li>
+      </ul>
     </div>
-  </footer>
+  </div>
 
-  <script>
-    const navbar = document.getElementById('navbar');
+  <div class="domains">
+    <div class="domain reveal">
+      <p class="domain-num">01</p>
+      <h3>The Founder</h3>
+      <p>Building something from nothing, in a city where nobody in their circle has done it before.</p>
+    </div>
+    <div class="domain reveal">
+      <p class="domain-num">02</p>
+      <h3>The Aspirant</h3>
+      <p>Years of preparation, no guarantee, no shortcut — just the decision that this is the thing and this is the commitment.</p>
+    </div>
+    <div class="domain reveal">
+      <p class="domain-num">03</p>
+      <h3>The Creator</h3>
+      <p>Building a body of work in a field where the path isn't linear and the validation doesn't come early.</p>
+    </div>
+    <div class="domain reveal">
+      <p class="domain-num">04</p>
+      <h3>The Athlete</h3>
+      <p>Choosing a physical standard and holding it — not for competition, but because the discipline itself is the point.</p>
+    </div>
+  </div>
+</section>
 
-    const revealEls = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), 80);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    revealEls.forEach(el => observer.observe(el));
+<!-- CONVICTION QUOTE -->
+<section class="conviction reveal">
+  <blockquote>
+    "Identity is not inherited.<br>It is chosen, and then it is earned."
+  </blockquote>
+  <p class="conviction-sub">
+    What you were born into — family, city, circumstance —
+    that is the starting point. Not the ending one.
+    In a country where birth is still widely treated as destiny,
+    choosing otherwise is not just personal.<br>It is a position.
+  </p>
+  <cite>— The Outlyr Manifesto</cite>
+</section>
 
-    function handleJoin() {
-      const input = document.querySelector('.email-input');
-      const btn = document.querySelector('.email-btn');
-      if (!input.value || !input.value.includes('@')) {
-        input.style.borderLeft = '2px solid rgba(200,169,110,0.6)';
-        return;
-      }
-      btn.textContent = "You're in.";
-      btn.style.background = 'rgba(200,169,110,0.25)';
-      btn.style.color = 'var(--gold)';
-      input.value = '';
-      input.placeholder = "We'll be in touch.";
-      input.disabled = true;
-    }
+<!-- COMMUNITY -->
+<section class="community" id="community">
+  <div class="community-top reveal">
+    <div>
+      <p class="tag">03 — The Circle</p>
+      <h2>The room<br>where it<br><em>goes somewhere.</em></h2>
+    </div>
+    <p class="community-desc">
+      Most conversations end where they started.
+      An opinion formed, a reaction shared, a scroll continued.<br><br>
+      <strong>The Circle is built for conversations that go somewhere.</strong>
+      Ideas examined, challenged, built upon. Implementation discussed, not just admired.
+      A private room of people who are actually in the process — not planning to be, not narrating it for an audience.
+      Actually in it.
+    </p>
+  </div>
 
-    const bgText = document.querySelector('.hero-bg-text');
-    window.addEventListener('scroll', () => {
-      const scrolled = window.scrollY;
-      if (bgText) bgText.style.transform = `translateY(${scrolled * 0.25}px)`;
-      navbar.classList.toggle('scrolled', scrolled > 40);
-    });
-  </script>
+  <div class="room-statement reveal">
+    <h3>Ideas.<br>Not <em>gossip.</em></h3>
+    <p>
+      The Circle has one social currency — <strong>depth of thinking and bias toward building.</strong>
+      The founder in Nagpur, the aspirant in Patna, the artist in Baroda, the athlete in Pune —
+      they don't share a domain. They share a quality of mind.
+      That is what the room is built on. That is what it protects.
+    </p>
+  </div>
+
+  <div class="pillars">
+    <div class="pillar reveal">
+      <span class="pillar-num">I</span>
+      <h3>The Lab</h3>
+      <p>A private space where people who are building things talk to other people who are building things. Not about motivation — about the actual process. The decisions, the contradictions, the things that are working and the things that aren't.</p>
+    </div>
+    <div class="pillar reveal">
+      <span class="pillar-num">II</span>
+      <h3>Behind the Build</h3>
+      <p>Members document their process in real time — the decisions, the pivots, the failures, the breakthroughs. Not polished case studies. Raw, ongoing records of what it actually looks like to build something from the inside.</p>
+    </div>
+    <div class="pillar reveal">
+      <span class="pillar-num">III</span>
+      <h3>The Right Room</h3>
+      <p>Filtered entry. Not by achievement, not by credentials, not by following count. By quality of thinking and direction of movement. The room is only as valuable as the people inside it — and that standard never drops.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <p class="cta-tag reveal">// Enter</p>
+  <h2 class="reveal">
+    Live Your<br>
+    Way <em>In.</em>
+  </h2>
+  <p class="cta-body reveal">
+    The Circle is not open to everyone. It is not open to most people.<br><br>
+    <strong>Entry is reviewed. Standards are held.</strong>
+    We are looking for a rare kind of person — not the most successful,
+    not the most followed, not the most impressive.
+    The ones who think deepest and are moving toward something real.
+    If that is you, you already know it.
+    Start here.
+  </p>
+  <div class="cta-form reveal">
+    <input type="email" placeholder="your@email.com" />
+    <button>Apply</button>
+  </div>
+  <p class="cta-note reveal">No noise. No newsletters. Only when it matters.</p>
+
+  <div class="cta-divider reveal"></div>
+
+  <a href="https://instagram.com/outlyr.in" target="_blank" class="cta-insta reveal">
+    Follow the build &nbsp;<span class="handle">@outlyr.in</span>
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="f-logo">OUTLYR</span>
+  <ul class="f-links">
+    <li><a href="https://instagram.com/outlyr.in" target="_blank">Instagram</a></li>
+    <li><a href="https://www.outlyr.in/blog">Journal</a></li>
+    <li><a href="mailto:hello@outlyr.in">Contact</a></li>
+  </ul>
+  <span class="f-copy">© 2026 Outlyr. All rights reserved.</span>
+</footer>
+
 </body>
 </html>
+
+<style is:global>
+  :root {
+    --bg:    #080808;
+    --bg2:   #0c0c0c;
+    --bg3:   #111111;
+    --acc:   #c8a96e;
+    --a40:   rgba(200,184,154,0.40);
+    --a20:   rgba(200,184,154,0.20);
+    --a10:   rgba(200,184,154,0.10);
+    --a05:   rgba(200,184,154,0.05);
+    --tx:    #ede8e1;
+    --t80:   rgba(237,232,225,0.80);
+    --t55:   rgba(237,232,225,0.55);
+    --t30:   rgba(237,232,225,0.30);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--tx);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: crosshair;
+  }
+
+  a, button { cursor: crosshair; }
+
+  body::after {
+    content: '';
+    position: fixed; inset: 0; z-index: 9999;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    padding: 24px 56px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: linear-gradient(to bottom, rgba(8,8,8,0.96), transparent);
+    transition: background 0.4s ease, backdrop-filter 0.4s ease, padding 0.4s ease, border-bottom-color 0.4s ease;
+    border-bottom: 1px solid transparent;
+  }
+  nav.scrolled {
+    background: rgba(8, 8, 8, 0.55);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    padding-top: 14px;
+    padding-bottom: 14px;
+    border-bottom-color: rgba(200, 184, 154, 0.08);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; letter-spacing: 0.32em;
+    color: var(--acc); text-decoration: none;
+  }
+  .nav-center {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--t55);
+  }
+  .nav-right {
+    font-family: 'DM Mono', monospace;
+    font-size: 16px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--t55);
+    display: flex; gap: 50px;
+  }
+  .nav-right a {
+    color: var(--t55); text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-right a:hover { color: var(--acc); }
+
+  .hero {
+    min-height: 100svh;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    position: relative;
+    overflow: hidden;
+    padding: 0 56px;
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0; pointer-events: none;
+    display: grid; grid-template-columns: repeat(12, 1fr);
+  }
+  .hero-grid span { border-right: 1px solid var(--a10); }
+  .hero-grid span:first-child { border-left: 1px solid var(--a10); }
+
+  .hero-bg-word {
+    position: absolute;
+    bottom: -0.05em;
+    right: -0.02em;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(22vw, 28vw, 34vw);
+    line-height: 0.85;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(200, 184, 154, 0.03);
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -0.01em;
+    z-index: 1;
+    will-change: transform;
+  }
+
+  .hero-body {
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 80px;
+    position: relative; z-index: 2;
+    max-width: 900px;
+  }
+
+  .hero-kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 15px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--acc); margin-bottom: 36px;
+    display: flex; align-items: center; gap: 16px;
+    opacity: 0; animation: up 0.7s ease forwards 0.2s;
+  }
+  .hero-kicker::before {
+    content: ''; width: 32px; height: 1px;
+    background: var(--a40); display: block;
+  }
+
+  .hero-h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(96px, 14vw, 210px);
+    line-height: 0.86; letter-spacing: 0.01em;
+    opacity: 0; animation: up 1s ease forwards 0.4s;
+  }
+  .hero-h1 .g { color: var(--acc); }
+  .hero-h1 .o {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(237,232,225,0.25);
+  }
+
+  .hero-statement {
+    margin-top: 52px;
+    max-width: 600px;
+    opacity: 0; animation: up 0.8s ease forwards 0.75s;
+  }
+  .hero-statement p {
+    font-size: clamp(22px, 2.2vw, 28px);
+    line-height: 1.68; font-style: italic;
+    color: var(--t55);
+  }
+  .hero-statement p strong {
+    color: var(--tx); font-style: normal; font-weight: 600;
+  }
+
+  .hero-index {
+    position: absolute; right: 56px; bottom: 80px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.22em;
+    color: var(--t30); z-index: 2;
+    writing-mode: vertical-rl;
+    opacity: 0; animation: fadeIn 1s ease forwards 1.2s;
+  }
+
+  .hero-footer {
+    border-top: 1px solid var(--a10);
+    padding: 20px 0;
+    display: flex; justify-content: space-between;
+    align-items: center; position: relative; z-index: 2;
+    opacity: 0; animation: fadeIn 0.8s ease forwards 1.4s;
+  }
+  .hero-footer span {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--t30);
+  }
+
+  @keyframes up {
+    from { opacity: 0; transform: translateY(32px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn { to { opacity: 1; } }
+
+  .reveal {
+    opacity: 1; transform: none;
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .js-ready .reveal {
+    opacity: 0; transform: translateY(28px);
+  }
+  .reveal.on { opacity: 1; transform: none; }
+
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 15px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--acc);
+    display: flex; align-items: center; gap: 14px;
+  }
+  .tag::before {
+    content: ''; width: 24px; height: 1px;
+    background: var(--a40); display: block; flex-shrink: 0;
+  }
+
+  section {
+    padding: 128px 56px;
+    border-top: 1px solid var(--a10);
+    position: relative;
+  }
+
+  .belief {
+    background: var(--bg2);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+  }
+
+  .belief-left h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 7vw, 108px);
+    line-height: 0.88; letter-spacing: 0.01em;
+    margin-top: 28px;
+  }
+  .belief-left h2 em { color: var(--acc); font-style: italic; }
+
+  .belief-right {
+    display: flex; flex-direction: column; gap: 32px;
+  }
+
+  .belief-line {
+    padding: 32px 36px;
+    border: 1px solid var(--a10);
+    position: relative;
+    transition: border-color 0.4s, background 0.4s;
+  }
+  .belief-line:hover {
+    border-color: var(--a20);
+    background: var(--a05);
+  }
+  .belief-line::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 2px; height: 0;
+    background: var(--acc);
+    transition: height 0.5s ease;
+  }
+  .belief-line:hover::before { height: 100%; }
+
+  .belief-line p {
+    font-size: clamp(22px, 2.0vw, 25px);
+    line-height: 1.75; font-style: italic;
+    color: var(--t55);
+  }
+  .belief-line p strong {
+    color: var(--tx); font-style: normal; font-weight: 600;
+  }
+
+  .deeper-top {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; margin-bottom: 88px; align-items: end;
+  }
+
+  .deeper-top h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 7vw, 108px);
+    line-height: 0.88; letter-spacing: 0.01em;
+    margin-top: 28px;
+  }
+  .deeper-top h2 em { color: var(--acc); font-style: italic; }
+
+  .deeper-intro {
+    font-size: clamp(22px, 2.0vw, 25px);
+    line-height: 1.78; font-style: italic;
+    color: var(--t55); padding-bottom: 8px;
+  }
+  .deeper-intro strong { color: var(--tx); font-style: normal; font-weight: 600; }
+
+  .contrast {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border: 1px solid var(--a10);
+    margin-bottom: 80px;
+  }
+
+  .contrast-col { padding: 52px 48px; }
+  .contrast-col:first-child { border-right: 1px solid var(--a10); }
+
+  .contrast-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 15px; letter-spacing: 0.28em; text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .contrast-col:first-child .contrast-label { color: var(--t30); }
+  .contrast-col:last-child .contrast-label { color: var(--acc); }
+
+  .contrast-col ul {
+    list-style: none; display: flex; flex-direction: column; gap: 16px;
+  }
+  .contrast-col ul li {
+    font-size: 17px; line-height: 1.7;
+    font-style: italic; color: var(--t30);
+    padding-left: 20px; position: relative;
+  }
+  .contrast-col:last-child ul li { color: var(--t55); }
+  .contrast-col ul li::before {
+    content: '—'; position: absolute; left: 0;
+    color: var(--a40);
+  }
+
+  .domains {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+  }
+
+  .domain {
+    padding: 44px 36px;
+    border: 1px solid var(--a10);
+    transition: background 0.4s, border-color 0.4s;
+    position: relative; overflow: hidden;
+  }
+  .domain:hover { background: var(--a05); border-color: var(--a20); }
+  .domain::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 1px; background: var(--acc);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.5s ease;
+  }
+  .domain:hover::after { transform: scaleX(1); }
+
+  .domain-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px; letter-spacing: 0.25em;
+    color: var(--acc); margin-bottom: 20px;
+  }
+  .domain h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px; letter-spacing: 0.08em;
+    color: var(--tx); margin-bottom: 12px;
+  }
+  .domain p {
+    font-size: 20px; line-height: 1.8;
+    color: var(--t30); font-style: italic;
+  }
+
+  .conviction {
+    background: var(--bg2);
+    text-align: center; overflow: hidden;
+    padding: 160px 56px;
+  }
+
+  .conviction::before {
+    content: '"';
+    position: absolute; top: -80px; left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 480px; line-height: 1;
+    color: rgba(200,184,154,0.03);
+    pointer-events: none;
+  }
+
+  .conviction blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(26px, 3.5vw, 48px);
+    font-style: italic; font-weight: 300;
+    line-height: 1.45; color: var(--tx);
+    max-width: 840px; margin: 0 auto 20px;
+    position: relative; z-index: 1;
+  }
+  .conviction blockquote em { color: var(--acc); }
+
+  .conviction-sub {
+    font-size: clamp(20px, 1.8vw, 22px);
+    line-height: 1.7; font-style: italic;
+    color: var(--t30); max-width: 560px;
+    margin: 0 auto 40px; position: relative; z-index: 1;
+  }
+
+  .conviction cite {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--a40);
+    font-style: normal; position: relative; z-index: 1;
+  }
+
+  .community-top {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; margin-bottom: 88px; align-items: end;
+  }
+
+  .community-top h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 7vw, 108px);
+    line-height: 0.88; letter-spacing: 0.01em;
+    margin-top: 28px;
+  }
+  .community-top h2 em { color: var(--acc); font-style: italic; }
+
+  .community-desc {
+    font-size: clamp(22px, 2.0vw, 25px);
+    line-height: 1.78; font-style: italic;
+    color: var(--t55); padding-bottom: 8px;
+  }
+  .community-desc strong { color: var(--tx); font-style: normal; font-weight: 600; }
+
+  .room-statement {
+    border: 1px solid var(--a10);
+    padding: 52px 56px;
+    margin-bottom: 3px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 64px; align-items: center;
+  }
+
+  .room-statement h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px; letter-spacing: 0.04em;
+    line-height: 0.9; color: var(--tx);
+  }
+  .room-statement h3 em { color: var(--acc); font-style: italic; }
+
+  .room-statement p {
+    font-size: clamp(19px, 1.7vw, 22px);
+    line-height: 1.78; font-style: italic; color: var(--t55);
+  }
+  .room-statement p strong { color: var(--tx); font-style: normal; font-weight: 600; }
+
+  .pillars { display: flex; flex-direction: column; }
+  .pillar {
+    display: grid;
+    grid-template-columns: 56px 200px 1fr;
+    align-items: start; gap: 48px;
+    padding: 44px 0;
+    border-bottom: 1px solid var(--a10);
+    transition: padding-left 0.4s ease;
+  }
+  .pillar:first-child { border-top: 1px solid var(--a10); }
+  .pillar:hover { padding-left: 8px; }
+
+  .pillar-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.25em;
+    color: var(--acc); padding-top: 4px;
+  }
+  .pillar h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px; letter-spacing: 0.06em;
+    color: var(--tx); line-height: 1;
+  }
+  .pillar p {
+    font-size: 18px; line-height: 1.8;
+    color: var(--t55); font-style: italic;
+  }
+
+  .india-strip {
+    border-top: 1px solid var(--a10);
+    padding: 56px;
+    background: var(--bg3);
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 48px;
+  }
+
+  .india-left { display: flex; align-items: center; gap: 32px; }
+
+  .india-line {
+    width: 1px; height: 64px;
+    background: linear-gradient(to bottom, transparent, var(--a40), transparent);
+    flex-shrink: 0;
+  }
+
+  .india-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2vw, 26px);
+    font-style: italic; color: var(--t55);
+    line-height: 1.5; max-width: 600px;
+  }
+  .india-text em { color: var(--acc); font-style: italic; }
+
+  .india-mono {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--t30);
+    white-space: nowrap; flex-shrink: 0;
+  }
+
+  .cta {
+    padding: 160px 56px;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+
+  .cta::before {
+    content: 'OUTLYR';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30vw; letter-spacing: 0.05em;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(200,184,154,0.03);
+    pointer-events: none; white-space: nowrap;
+    user-select: none;
+  }
+
+  .cta-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 15px; letter-spacing: 0.32em;
+    text-transform: uppercase; color: var(--acc);
+    margin-bottom: 40px; position: relative;
+  }
+
+  .cta h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 11vw, 160px);
+    line-height: 0.88; letter-spacing: 0.01em;
+    margin-bottom: 40px; position: relative;
+  }
+  .cta h2 em { color: var(--acc); font-style: italic; }
+  .cta h2 .o {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(237,232,225,0.2);
+  }
+
+  .cta-body {
+    font-size: clamp(17px, 1.5vw, 20px);
+    font-style: italic; color: var(--t55);
+    max-width: 520px; margin: 0 auto 64px;
+    line-height: 1.78; position: relative;
+  }
+  .cta-body strong { color: var(--tx); font-style: normal; font-weight: 600; }
+
+  .cta-form {
+    display: flex; max-width: 460px;
+    margin: 0 auto 18px; position: relative;
+  }
+  .cta-form input {
+    flex: 1; background: transparent;
+    border: 1px solid var(--a20); border-right: none;
+    padding: 16px 22px; color: var(--tx);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.12em;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  .cta-form input::placeholder { color: var(--t30); }
+  .cta-form input:focus { border-color: var(--acc); }
+  .cta-form button {
+    background: var(--acc); color: var(--bg);
+    border: 1px solid var(--acc);
+    padding: 16px 28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
+    transition: background 0.3s, color 0.3s;
+    white-space: nowrap;
+  }
+  .cta-form button:hover { background: transparent; color: var(--acc); }
+
+  .cta-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--t30);
+    margin-bottom: 64px; position: relative;
+  }
+
+  .cta-divider {
+    width: 1px; height: 56px;
+    background: linear-gradient(to bottom, var(--a20), transparent);
+    margin: 0 auto 44px; position: relative;
+  }
+
+  .cta-insta {
+    display: inline-flex; align-items: center; gap: 16px;
+    border: 1px solid var(--a10); padding: 18px 44px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--t55); text-decoration: none;
+    transition: border-color 0.3s, color 0.3s, background 0.3s;
+    position: relative;
+  }
+  .cta-insta:hover { border-color: var(--a20); color: var(--acc); background: var(--a05); }
+  .cta-insta .handle { color: var(--acc); }
+  .cta-insta::after {
+    content: '↗'; font-size: 13px;
+    transition: transform 0.3s;
+  }
+  .cta-insta:hover::after { transform: translate(2px,-2px); }
+
+  footer {
+    border-top: 1px solid var(--a10);
+    padding: 32px 56px;
+    display: flex;
+    align-items: center;
+  }
+  .f-logo {
+    flex: 1;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px; letter-spacing: 0.32em; color: var(--acc);
+  }
+  .f-links {
+    flex: 1; display: flex; gap: 28px; list-style: none; justify-content: center;
+  }
+  .f-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--t55); text-decoration: none;
+    transition: color 0.3s;
+  }
+  .f-links a:hover { color: var(--acc); }
+  .f-copy {
+    flex: 1;
+    text-align: right;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.12em; color: var(--t55);
+  }
+
+  @media (max-width: 960px) {
+    nav { padding: 20px 24px; }
+    .nav-center { display: none; }
+    .hero { padding: 0 24px; }
+    .hero-index { display: none; }
+    section { padding: 88px 24px; }
+    .belief { grid-template-columns: 1fr; gap: 48px; }
+    .deeper-top { grid-template-columns: 1fr; gap: 32px; margin-bottom: 56px; }
+    .domains { grid-template-columns: 1fr 1fr; }
+    .contrast { grid-template-columns: 1fr; }
+    .contrast-col:first-child { border-right: none; border-bottom: 1px solid var(--a10); }
+    .community-top { grid-template-columns: 1fr; gap: 32px; margin-bottom: 56px; }
+    .room-statement { grid-template-columns: 1fr; gap: 24px; }
+    .pillar { grid-template-columns: 40px 1fr; }
+    .pillar p { grid-column: 2; }
+    .india-strip { flex-direction: column; padding: 48px 24px; align-items: flex-start; }
+    .cta { padding: 100px 24px; }
+    .cta-form { flex-direction: column; }
+    .cta-form input { border-right: 1px solid var(--a20); }
+    footer { flex-direction: column; gap: 20px; text-align: center; padding: 32px 24px; }
+    .f-copy { text-align: center; }
+  }
+
+  @media (max-width: 560px) {
+    .hero-h1 { font-size: clamp(72px, 20vw, 96px); }
+    .domains { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script is:inline>
+  document.documentElement.classList.add('js-ready');
+
+  const navbar = document.querySelector('nav');
+  const heroBgWord = document.getElementById('heroBgWord');
+
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    navbar.classList.toggle('scrolled', scrolled > 40);
+    if (heroBgWord) {
+      heroBgWord.style.transform = `translateY(${scrolled * 0.3}px)`;
+      heroBgWord.style.opacity = Math.max(0, 1 - scrolled / 400);
+    }
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('on');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.07 });
+
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
