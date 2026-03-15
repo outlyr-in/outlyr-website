@@ -1,0 +1,10 @@
+{
+  "name": "OUTLYR",
+  "short_name": "OUTLYR",
+  "icons": [
+    { "src": "/favicon-96x96.png", "sizes": "96x96", "type": "image/png" }
+  ],
+  "theme_color": "#080808",
+  "background_color": "#080808",
+  "display": "standalone"
+}
