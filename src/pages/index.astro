@@ -6,14 +6,16 @@ let applicantCount = 0;
 let counterReady = false;
 try {
   const res = await fetch(
-    `${import.meta.env.PUBLIC_SUPABASE_URL}/rest/v1/circle_counter?select=count&id=eq.1`,
-    {
-      headers: {
-        'apikey': import.meta.env.PUBLIC_SUPABASE_ANON_KEY,
-        'Authorization': `Bearer ${import.meta.env.PUBLIC_SUPABASE_ANON_KEY}`,
-      }
+  `${import.meta.env.PUBLIC_SUPABASE_URL}/rest/v1/circle_counter?select=count&id=eq.1`,
+  {
+    headers: {
+      'apikey': import.meta.env.PUBLIC_SUPABASE_ANON_KEY,
+      'Authorization': `Bearer ${import.meta.env.PUBLIC_SUPABASE_ANON_KEY}`,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=representation',
     }
-  );
+  }
+);
   const data = await res.json();
   applicantCount = data[0]?.count ?? 0;
   counterReady = true;
