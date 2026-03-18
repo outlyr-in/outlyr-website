@@ -615,5 +615,17 @@ document.querySelectorAll('.field-textarea[maxlength]').forEach(function(textare
     }
   });
 
+  if (json.success) {
+  // Fire and forget — if this fails, form submission still succeeds
+  fetch('/api/increment-counter', { method: 'POST' })
+    .catch(() => {
+      // Silently fail — counter not incrementing is not critical
+      console.warn('Counter increment failed');
+    });
+
+  form.style.display = 'none';
+  successState.classList.add('visible');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
 </script>

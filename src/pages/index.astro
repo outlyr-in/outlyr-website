@@ -1,5 +1,25 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Fetch current count at build/request time
+let applicantCount = 0;
+let counterReady = false;
+try {
+  const res = await fetch(
+    `${import.meta.env.PUBLIC_SUPABASE_URL}/rest/v1/circle_counter?select=count&id=eq.1`,
+    {
+      headers: {
+        'apikey': import.meta.env.PUBLIC_SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${import.meta.env.PUBLIC_SUPABASE_ANON_KEY}`,
+      }
+    }
+  );
+  const data = await res.json();
+  applicantCount = data[0]?.count ?? 0;
+  counterReady = true;
+} catch (e) {
+  counterReady = false;
+}
 ---
 
 <BaseLayout title="OUTLYR — Built Not Born">
@@ -199,6 +219,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     If that is you, you already know it.
     Start here.
   </p>
+      {counterReady && applicantCount > 0 && (
+  <div class="applicant-counter">
+    <span class="counter-num">{applicantCount}</span>
+    <span class="counter-label">people have applied</span>
+  </div>
+)}
   <div>
   <a href="/the-circle" class="cta-apply-btn reveal">
     Apply to The Circle <span>↗</span>
@@ -740,6 +766,37 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     font-size: 14px;
   }
   .cta-apply-btn:hover span { transform: translate(3px, -3px); }
+
+  .cta-counter {
+  display: flex; align-items: baseline;
+  justify-content: center; gap: 14px;
+  margin-bottom: 48px;
+  padding: 28px 48px;
+  border: 1px solid var(--a10);
+  max-width: 360px;
+  margin-left: auto; margin-right: auto;
+  position: relative;
+}
+.cta-counter::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 2px; height: 100%;
+  background: var(--acc);
+}
+.cta-counter-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(48px, 6vw, 72px);
+  line-height: 1; color: var(--acc);
+  letter-spacing: 0.02em;
+  position: relative; z-index: 1;
+}
+.cta-counter-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--t30);
+  line-height: 1.6; max-width: 100px;
+  position: relative; z-index: 1;
+}
 
   footer {
     border-top: 1px solid var(--a10);
