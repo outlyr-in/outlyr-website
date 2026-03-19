@@ -605,7 +605,7 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
 
       if (json.success) {
         // Increment counter — fire and forget
-        fetch('/api/incrementCounter', { method: 'POST' })
+        fetch('/counter', { method: 'POST' })
           .then(r => r.json())
           .then(data => console.log('Counter result:', data))
           .catch(err => console.error('Counter error:', err));
