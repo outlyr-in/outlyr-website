@@ -7,9 +7,12 @@ import mdx from '@astrojs/mdx';
 export default defineConfig({
   site: 'https://www.outlyr.in',
   output: 'server',
+  security: {
+    checkOrigin: false,
+  },
   adapter: vercel({
     webAnalytics: {
-      enabled: true, // set to false when using @vercel/analytics@1.4.0
+      enabled: true,
     },
   }),
   integrations: [mdx(), react(), keystatic()],
