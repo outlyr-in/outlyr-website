@@ -568,24 +568,25 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
 
     return valid;
   }
-    // Character counters
-document.querySelectorAll('.field-textarea[maxlength]').forEach(function(textarea) {
-  const counter = document.querySelector('.char-counter[data-for="' + textarea.id + '"]');
-  if (!counter) return;
-  const max = parseInt(textarea.getAttribute('maxlength'));
-  const countEl = counter.querySelector('.char-count');
 
-  textarea.addEventListener('input', function() {
-    const len = this.value.length;
-    countEl.textContent = len;
-    counter.classList.remove('near-limit', 'at-limit');
-    if (len >= max) {
-      counter.classList.add('at-limit');
-    } else if (len >= max * 0.85) {
-      counter.classList.add('near-limit');
-    }
+  // Character counters
+  document.querySelectorAll('.field-textarea[maxlength]').forEach(function(textarea) {
+    const counter = document.querySelector('.char-counter[data-for="' + textarea.id + '"]');
+    if (!counter) return;
+    const max = parseInt(textarea.getAttribute('maxlength'));
+    const countEl = counter.querySelector('.char-count');
+
+    textarea.addEventListener('input', function() {
+      const len = this.value.length;
+      countEl.textContent = len;
+      counter.classList.remove('near-limit', 'at-limit');
+      if (len >= max) {
+        counter.classList.add('at-limit');
+      } else if (len >= max * 0.85) {
+        counter.classList.add('near-limit');
+      }
+    });
   });
-});
 
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -601,7 +602,14 @@ document.querySelectorAll('.field-textarea[maxlength]').forEach(function(textare
         body: JSON.stringify(Object.fromEntries(new FormData(form))),
       });
       const json = await res.json();
+
       if (json.success) {
+        // Increment counter — fire and forget
+        fetch('/api/incrementCounter', { method: 'POST' })
+          .then(r => r.json())
+          .then(data => console.log('Counter result:', data))
+          .catch(err => console.error('Counter error:', err));
+
         form.style.display = 'none';
         successState.classList.add('visible');
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -614,17 +622,4 @@ document.querySelectorAll('.field-textarea[maxlength]').forEach(function(textare
       submitBtn.disabled = false;
     }
   });
-
-  if (json.success) {
-  // Fire and forget — if this fails, form submission still succeeds
-  fetch('/api/incrementCounter', { method: 'POST' })
-  .then(r => r.json())
-  .then(data => console.log('Counter result:', data))
-  .catch(err => console.error('Counter error:', err));
-
-  form.style.display = 'none';
-  successState.classList.add('visible');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
 </script>
