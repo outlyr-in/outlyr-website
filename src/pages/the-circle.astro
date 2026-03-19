@@ -617,11 +617,10 @@ document.querySelectorAll('.field-textarea[maxlength]').forEach(function(textare
 
   if (json.success) {
   // Fire and forget — if this fails, form submission still succeeds
-  fetch('/api/increment-counter', { method: 'POST' })
-    .catch(() => {
-      // Silently fail — counter not incrementing is not critical
-      console.warn('Counter increment failed');
-    });
+  fetch('/api/incrementCounter', { method: 'POST' })
+  .then(r => r.json())
+  .then(data => console.log('Counter result:', data))
+  .catch(err => console.error('Counter error:', err));
 
   form.style.display = 'none';
   successState.classList.add('visible');
