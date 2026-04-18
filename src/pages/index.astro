@@ -1,21 +1,20 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// Fetch current count at build/request time
 let applicantCount = 0;
 let counterReady = false;
 try {
   const res = await fetch(
-  `${import.meta.env.PUBLIC_SUPABASE_URL}/rest/v1/circle_counter?select=count&id=eq.1`,
-  {
-    headers: {
-      'apikey': import.meta.env.PUBLIC_SUPABASE_ANON_KEY,
-      'Authorization': `Bearer ${import.meta.env.PUBLIC_SUPABASE_ANON_KEY}`,
-      'Content-Type': 'application/json',
-      'Prefer': 'return=representation',
+    `${import.meta.env.PUBLIC_SUPABASE_URL}/rest/v1/circle_counter?select=count&id=eq.1`,
+    {
+      headers: {
+        'apikey': import.meta.env.PUBLIC_SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${import.meta.env.PUBLIC_SUPABASE_ANON_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=representation',
+      }
     }
-  }
-);
+  );
   const data = await res.json();
   applicantCount = data[0]?.count ?? 0;
   counterReady = true;
@@ -37,7 +36,7 @@ try {
   <div class="hero-body">
     <p class="hero-kicker">// Not for everyone</p>
     <h1 class="hero-h1">
-      Built<br><span class="g"><em>Not Born.</em></span>
+      Built<br><span class="hero-gold"><em>Not Born.</em></span>
     </h1>
     <div class="hero-statement">
       <p>
@@ -45,11 +44,15 @@ try {
         it is what you have chosen, earned, and are still in the process of becoming.
         No audience required.
       </p>
-      <a href="#cta" class="hero-cta">
-        Apply to The Circle <span>↗</span>
-      </a>
+      <div class="hero-actions">
+        <a href="#craft" class="hero-cta">
+          The brand <span>↓</span>
+        </a>
+        <a href="/the-circle" class="hero-cta hero-cta--ghost">
+          The Circle <span>↗</span>
+        </a>
+      </div>
     </div>
-        
   </div>
   <span class="hero-index">OUTLYR — 001 / 005 — IDENTITY</span>
 </section>
@@ -58,10 +61,10 @@ try {
 <section class="belief reveal">
   <div class="belief-left">
     <p class="tag">01 — The Belief</p>
-    <h2>Your ceiling<br>is <em>yours.</em></h2>
+    <h2 class="sec-h2">Your ceiling<br>is <em>yours.</em></h2>
   </div>
-  <div class="belief-right reveal">
-    <div class="belief-line">
+  <div class="belief-right">
+    <div class="belief-line reveal">
       <p>
         A quiet conviction that most people never fully test —
         <strong>that what you can become is largely self-determined.</strong>
@@ -69,7 +72,7 @@ try {
         It is how much you are genuinely willing to put in.
       </p>
     </div>
-    <div class="belief-line">
+    <div class="belief-line reveal">
       <p>
         You already know this. You've known it for a while.
         <strong>That's why you're still here, still at it</strong> — long after
@@ -85,9 +88,9 @@ try {
   <div class="deeper-top reveal">
     <div>
       <p class="tag">02 — The Marker</p>
-      <h2>One level<br><em>deeper.</em></h2>
+      <h2 class="sec-h2">One level<br><em>deeper.</em></h2>
     </div>
-    <p class="deeper-intro">
+    <p class="body-italic">
       The Outlyr mind doesn't react — it analyzes.
       Doesn't judge — it understands.<br><br>
       <strong>When everyone else has an opinion, the Outlyr person has a question:</strong>
@@ -159,95 +162,139 @@ try {
   <cite>— The Outlyr Manifesto</cite>
 </section>
 
-<!-- COMMUNITY -->
-<section class="community" id="community">
-  <div class="community-top reveal">
+<!-- THE CRAFT -->
+<section class="craft" id="craft">
+  <div class="craft-top reveal">
     <div>
-      <p class="tag">03 — The Circle</p>
-      <h2>The room<br>where it<br><em>goes somewhere.</em></h2>
+      <p class="tag">03 — The Craft</p>
+      <h2 class="sec-h2">Only<br><em>embroidery.</em></h2>
     </div>
-    <p class="community-desc">
-      Most conversations end where they started.
-      An opinion formed, a reaction shared, a scroll continued.<br><br>
-      <strong>The Circle is built for conversations that go somewhere.</strong>
-      Ideas examined, challenged, built upon. Implementation discussed, not just admired.
-      A private room of people who are actually in the process — not planning to be, not narrating it for an audience.
-      Actually in it.
+    <p class="body-italic">
+      Outlyr makes one kind of garment. Thread pushed through fabric, stitch by stitch.
+      No print. No heat transfer. No shortcut.<br><br>
+      <strong>The process is slower. The result doesn't wash out.</strong>
+      Every piece is a decision about what goes on it — and embroidery holds
+      that decision for years. That is the point.
     </p>
   </div>
 
-  <div class="room-statement reveal">
-    <h3>Ideas.<br>Not <em>gossip.</em></h3>
-    <p>
-      The Circle has one social currency — <strong>depth of thinking and bias toward building.</strong>
-      The founder in Nagpur, the aspirant in Patna, the artist in New York, the athlete in Pune —
-      they don't share a domain. They share a quality of mind.
-      That is what the room is built on. That is what it protects.
-    </p>
+  <div class="craft-specs reveal">
+    <div class="spec">
+      <span class="spec-label">Method</span>
+      <span class="spec-value">Embroidery only</span>
+    </div>
+    <div class="spec">
+      <span class="spec-label">Form</span>
+      <span class="spec-value">Oversized, considered</span>
+    </div>
+    <div class="spec">
+      <span class="spec-label">Run</span>
+      <span class="spec-value">Limited, intentional</span>
+    </div>
+    <div class="spec">
+      <span class="spec-label">Philosophy</span>
+      <span class="spec-value">Built, not printed</span>
+    </div>
+    <div class="spec">
+      <span class="spec-label">Origin</span>
+      <span class="spec-value">India</span>
+    </div>
   </div>
 
-  <div class="pillars">
-    <div class="pillar reveal">
-      <span class="pillar-num">I</span>
-      <h3>The Lab</h3>
-      <p>A private space where people who are building things talk to other people who are building things. Not about motivation — about the actual process. The decisions, the contradictions, the things that are working and the things that aren't.</p>
+  <div class="craft-cards reveal">
+    <div class="craft-card">
+      <p>
+        Most streetwear is printed. Fast, cheap, disposable.
+        Print fades. Heat transfers crack. The garment becomes a record of its own degradation.
+      </p>
     </div>
-    <div class="pillar reveal">
-      <span class="pillar-num">II</span>
-      <h3>Behind the Build</h3>
-      <p>Members document their process in real time — the decisions, the pivots, the failures, the breakthroughs. Not polished case studies. Raw, ongoing records of what it actually looks like to build something from the inside.</p>
-    </div>
-    <div class="pillar reveal">
-      <span class="pillar-num">III</span>
-      <h3>The Right Room</h3>
-      <p>Filtered entry. Not by achievement, not by credentials, not by following count. By quality of thinking and direction of movement. The room is only as valuable as the people inside it — and that standard never drops.</p>
+    <div class="craft-card">
+      <p>
+        Embroidery is the opposite. It is stitched in.
+        <strong>The piece you wear five years from now looks like the decision you made when you bought it.</strong>
+        Outlyr only makes things that hold.
+      </p>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta" id="cta">
-  <p class="cta-tag reveal">// Enter</p>
-  <h2 class="reveal">
-    Live Your<br>
-    Way <em>In.</em>
-  </h2>
-  <p class="cta-body reveal">
-    The Circle is not open to everyone. It is not open to most people.<br><br>
-    <strong>Entry is reviewed. Standards are held.</strong>
-    We are looking for a rare kind of person — not the most successful,
-    not the most followed, not the most impressive.
-    The ones who think deepest and are moving toward something real.
-    If that is you, you already know it.
-    Start here.
-  </p>
-{counterReady && applicantCount > 0 && (
-  <div class="cta-counter reveal">
-    <span class="cta-counter-num">{applicantCount}</span>
-    <span class="cta-counter-label">people have applied</span>
+<!-- THE OBJECT — phygital teaser -->
+<section class="object">
+  <div class="object-inner">
+    <p class="tag reveal">04 — The Object</p>
+    <h2 class="object-h2 reveal">The piece<br><em>continues.</em></h2>
+    <div class="object-body-wrap reveal">
+      <p class="object-body">
+        Every Outlyr garment carries something inside it.
+        Not visible from outside. Not on the label. Not explained anywhere.
+      </p>
+      <p class="object-body">
+        <strong>At some point, you will encounter it.</strong>
+        What it tells you — depends on where you are in the story.
+      </p>
+    </div>
+    <div class="object-divider reveal"></div>
+    <p class="object-sub reveal">// This is not a garment you wear and forget.</p>
   </div>
-)}
-  <div>
-  <a href="/the-circle" class="cta-apply-btn reveal">
-    Apply to The Circle <span>↗</span>
-  </a>
-  </div>
+</section>
 
-  <a href="https://instagram.com/outlyr.in" target="_blank" class="cta-insta reveal">
-    Follow the build &nbsp;<span class="handle">@outlyr.in</span>
-  </a>
+<!-- CIRCLE TEASER -->
+<section class="circle-teaser">
+  <div class="circle-teaser-grid">
+    <div class="reveal">
+      <p class="tag">05 — The Circle</p>
+      <h2 class="sec-h2">A private<br>room for<br><em>builders.</em></h2>
+    </div>
+    <div class="circle-right reveal">
+      <p class="body-italic">
+        The Circle is where the Outlyr tribe actually exists.
+        Character-filtered. Application-based.
+        <strong>Not open to most people.</strong><br><br>
+        If you are building something, pursuing something, or becoming something —
+        and you want a room that operates at that level — apply.
+        The standard is held. Always.
+      </p>
+      {counterReady && applicantCount > 0 && (
+        <div class="counter-block">
+          <span class="counter-num">{applicantCount}</span>
+          <span class="counter-label">people have applied</span>
+        </div>
+      )}
+      <a href="/the-circle" class="btn-gold">
+        Apply to The Circle <span>↗</span>
+      </a>
+      <a href="https://instagram.com/outlyr.in" target="_blank" class="btn-outline">
+        Follow the build &nbsp;<span class="btn-handle">@outlyr.in</span>
+      </a>
+    </div>
+  </div>
 </section>
 
 </BaseLayout>
 
 <style>
-
+  /* ─── KEYFRAMES ─── */
   @keyframes up {
     from { opacity: 0; transform: translateY(32px); }
     to   { opacity: 1; transform: translateY(0); }
   }
   @keyframes fadeIn { to { opacity: 1; } }
 
+  /* ─── TYPE HELPERS (page-local) ─── */
+  .sec-h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 7vw, 108px);
+    line-height: 0.88; letter-spacing: 0.01em; margin-top: 28px;
+  }
+  .sec-h2 em { color: var(--acc); font-style: italic; }
+
+  .body-italic {
+    font-size: clamp(20px, 2vw, 25px);
+    line-height: 1.78; font-style: italic; color: var(--t55);
+  }
+  .body-italic strong { color: var(--tx); font-style: normal; font-weight: 600; }
+
+  /* ─── HERO ─── */
   .hero {
     min-height: 100svh;
     display: grid; grid-template-rows: 1fr auto;
@@ -264,9 +311,8 @@ try {
   .hero-bg-word {
     position: absolute; bottom: -0.05em; right: -0.02em;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(22vw, 28vw, 34vw);
-    line-height: 0.85; color: transparent;
-    -webkit-text-stroke: 1px rgba(200,184,154,0.03);
+    font-size: clamp(22vw, 28vw, 34vw); line-height: 0.85;
+    color: transparent; -webkit-text-stroke: 1px rgba(200,184,154,0.03);
     pointer-events: none; user-select: none;
     letter-spacing: -0.01em; z-index: 1; will-change: transform;
   }
@@ -283,8 +329,7 @@ try {
     opacity: 0; animation: up 0.7s ease forwards 0.2s;
   }
   .hero-kicker::before {
-    content: ''; width: 32px; height: 1px;
-    background: var(--a40); display: block;
+    content: ''; width: 32px; height: 1px; background: var(--a40); display: block;
   }
   .hero-h1 {
     font-family: 'Bebas Neue', sans-serif;
@@ -292,11 +337,7 @@ try {
     line-height: 0.86; letter-spacing: 0.01em;
     opacity: 0; animation: up 1s ease forwards 0.4s;
   }
-  .hero-h1 .g { color: var(--acc); }
-  .hero-h1 .o {
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(237,232,225,0.25);
-  }
+  .hero-gold { color: var(--acc); }
   .hero-statement {
     margin-top: 52px; max-width: 600px;
     opacity: 0; animation: up 0.8s ease forwards 0.75s;
@@ -306,6 +347,25 @@ try {
     line-height: 1.68; font-style: italic; color: var(--t55);
   }
   .hero-statement p strong { color: var(--tx); font-style: normal; font-weight: 600; }
+
+  .hero-actions {
+    display: flex; gap: 16px; flex-wrap: wrap; margin-top: 48px;
+    opacity: 0; animation: up 0.8s ease forwards 1.05s;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 12px;
+    border: 1px solid var(--a40); padding: 16px 44px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--acc); text-decoration: none;
+    transition: background 0.3s, border-color 0.3s, color 0.3s;
+  }
+  .hero-cta:hover { background: var(--a05); border-color: var(--acc); color: var(--tx); }
+  .hero-cta span { font-size: 13px; transition: transform 0.3s; }
+  .hero-cta:hover span { transform: translate(3px, -3px); }
+  .hero-cta--ghost { border-color: var(--a20); color: var(--t55); }
+  .hero-cta--ghost:hover { border-color: var(--a40); color: var(--tx); background: var(--a05); }
+
   .hero-index {
     position: absolute; right: 56px; bottom: 80px;
     font-family: 'DM Mono', monospace;
@@ -314,548 +374,291 @@ try {
     opacity: 0; animation: fadeIn 1s ease forwards 1.2s;
   }
 
-  .hero-footer {
-    border-top: 1px solid var(--a10);
-    padding: 20px 0;
-    display: flex; justify-content: space-between;
-    align-items: center; position: relative; z-index: 2;
-    opacity: 0; animation: fadeIn 0.8s ease forwards 1.4s;
-  }
-  .hero-footer span {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px; letter-spacing: 0.22em;
-    text-transform: uppercase; color: var(--t30);
-  }
-
-  .hero-cta {
-  display: inline-flex; align-items: center; gap: 14px;
-  border: 1px solid var(--a40);
-  padding: 18px 48px;
-  font-family: 'DM Mono', monospace;
-  font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
-  color: var(--acc); text-decoration: none;
-  transition: background 0.3s, border-color 0.3s, color 0.3s;
-  margin-top: 52px;
-  opacity: 0; animation: up 0.8s ease forwards 1.1s;
-  position: relative; z-index: 2;
-}
-.hero-cta:hover {
-  background: var(--a05);
-  border-color: var(--acc);
-  color: var(--tx);
-}
-.hero-cta span {
-  font-size: 14px;
-  transition: transform 0.3s;
-}
-.hero-cta:hover span { transform: translate(3px, -3px); }
-
-  @keyframes up {
-    from { opacity: 0; transform: translateY(32px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn { to { opacity: 1; } }
-
-  .tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 15px; letter-spacing: 0.28em; text-transform: uppercase;
-    color: var(--acc);
-    display: flex; align-items: center; gap: 14px;
-  }
-  .tag::before {
-    content: ''; width: 24px; height: 1px;
-    background: var(--a40); display: block; flex-shrink: 0;
-  }
-
-  section {
-    padding: 128px 56px;
-    border-top: 1px solid var(--a10);
-    position: relative;
-  }
-
+  /* ─── BELIEF ─── */
   .belief {
     background: var(--bg2);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: grid; grid-template-columns: 1fr 1fr;
     gap: 80px; align-items: center;
   }
-
-  .belief-left h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(56px, 7vw, 108px);
-    line-height: 0.88; letter-spacing: 0.01em;
-    margin-top: 28px;
-  }
-  .belief-left h2 em { color: var(--acc); font-style: italic; }
-
-  .belief-right {
-    display: flex; flex-direction: column; gap: 32px;
-  }
-
+  .belief-right { display: flex; flex-direction: column; gap: 32px; }
   .belief-line {
-    padding: 32px 36px;
-    border: 1px solid var(--a10);
-    position: relative;
-    transition: border-color 0.4s, background 0.4s;
+    padding: 32px 36px; border: 1px solid var(--a10);
+    position: relative; transition: border-color 0.4s, background 0.4s;
   }
-  .belief-line:hover {
-    border-color: var(--a20);
-    background: var(--a05);
-  }
+  .belief-line:hover { border-color: var(--a20); background: var(--a05); }
   .belief-line::before {
-    content: '';
-    position: absolute; top: 0; left: 0;
-    width: 2px; height: 0;
-    background: var(--acc);
-    transition: height 0.5s ease;
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 2px; height: 0; background: var(--acc); transition: height 0.5s ease;
   }
   .belief-line:hover::before { height: 100%; }
-
   .belief-line p {
-    font-size: clamp(22px, 2.0vw, 25px);
-    line-height: 1.75; font-style: italic;
-    color: var(--t55);
+    font-size: clamp(20px, 1.9vw, 24px);
+    line-height: 1.75; font-style: italic; color: var(--t55);
   }
-  .belief-line p strong {
-    color: var(--tx); font-style: normal; font-weight: 600;
-  }
+  .belief-line p strong { color: var(--tx); font-style: normal; font-weight: 600; }
 
+  /* ─── DEEPER ─── */
   .deeper-top {
     display: grid; grid-template-columns: 1fr 1fr;
     gap: 80px; margin-bottom: 88px; align-items: end;
   }
-
-  .deeper-top h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(56px, 7vw, 108px);
-    line-height: 0.88; letter-spacing: 0.01em;
-    margin-top: 28px;
-  }
-  .deeper-top h2 em { color: var(--acc); font-style: italic; }
-
-  .deeper-intro {
-    font-size: clamp(22px, 2.0vw, 25px);
-    line-height: 1.78; font-style: italic;
-    color: var(--t55); padding-bottom: 8px;
-  }
-  .deeper-intro strong { color: var(--tx); font-style: normal; font-weight: 600; }
-
   .contrast {
     display: grid; grid-template-columns: 1fr 1fr;
-    border: 1px solid var(--a10);
-    margin-bottom: 80px;
+    border: 1px solid var(--a10); margin-bottom: 80px;
   }
-
   .contrast-col { padding: 52px 48px; }
   .contrast-col:first-child { border-right: 1px solid var(--a10); }
-
   .contrast-label {
     font-family: 'DM Mono', monospace;
-    font-size: 15px; letter-spacing: 0.28em; text-transform: uppercase;
-    margin-bottom: 28px;
+    font-size: 15px; letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 28px;
   }
   .contrast-col:first-child .contrast-label { color: var(--t30); }
   .contrast-col:last-child .contrast-label { color: var(--acc); }
-
-  .contrast-col ul {
-    list-style: none; display: flex; flex-direction: column; gap: 16px;
-  }
+  .contrast-col ul { list-style: none; display: flex; flex-direction: column; gap: 16px; }
   .contrast-col ul li {
-    font-size: 17px; line-height: 1.7;
-    font-style: italic; color: var(--t30);
+    font-size: 17px; line-height: 1.7; font-style: italic; color: var(--t30);
     padding-left: 20px; position: relative;
   }
   .contrast-col:last-child ul li { color: var(--t55); }
-  .contrast-col ul li::before {
-    content: '—'; position: absolute; left: 0;
-    color: var(--a40);
-  }
+  .contrast-col ul li::before { content: '—'; position: absolute; left: 0; color: var(--a40); }
 
-  .domains {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
-  }
-
+  .domains { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
   .domain {
-    padding: 44px 36px;
-    border: 1px solid var(--a10);
+    padding: 44px 36px; border: 1px solid var(--a10);
     transition: background 0.4s, border-color 0.4s;
     position: relative; overflow: hidden;
   }
   .domain:hover { background: var(--a05); border-color: var(--a20); }
   .domain::after {
-    content: '';
-    position: absolute; bottom: 0; left: 0; right: 0;
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
     height: 1px; background: var(--acc);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.5s ease;
+    transform: scaleX(0); transform-origin: left; transition: transform 0.5s ease;
   }
   .domain:hover::after { transform: scaleX(1); }
-
   .domain-num {
     font-family: 'DM Mono', monospace;
-    font-size: 8px; letter-spacing: 0.25em;
-    color: var(--acc); margin-bottom: 20px;
+    font-size: 8px; letter-spacing: 0.25em; color: var(--acc); margin-bottom: 20px;
   }
   .domain h3 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px; letter-spacing: 0.08em;
-    color: var(--tx); margin-bottom: 12px;
+    font-size: 28px; letter-spacing: 0.08em; color: var(--tx); margin-bottom: 12px;
   }
-  .domain p {
-    font-size: 20px; line-height: 1.8;
-    color: var(--t30); font-style: italic;
-  }
+  .domain p { font-size: 20px; line-height: 1.8; color: var(--t30); font-style: italic; }
 
+  /* ─── CONVICTION ─── */
   .conviction {
-    background: var(--bg2);
-    text-align: center; overflow: hidden;
-    padding: 160px 56px;
+    background: var(--bg2); text-align: center;
+    overflow: hidden; padding: 160px 56px;
   }
-
   .conviction::before {
-    content: '"';
-    position: absolute; top: -80px; left: 50%;
+    content: '"'; position: absolute; top: -80px; left: 50%;
     transform: translateX(-50%);
     font-family: 'Cormorant Garamond', serif;
     font-size: 480px; line-height: 1;
-    color: rgba(200,184,154,0.03);
-    pointer-events: none;
+    color: rgba(200,184,154,0.03); pointer-events: none;
   }
-
   .conviction blockquote {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(30px, 3.5vw, 48px);
-    font-style: italic; font-weight: 300;
-    line-height: 1.45; color: var(--tx);
-    max-width: 840px; margin: 0 auto 20px;
-    position: relative; z-index: 1;
+    font-style: italic; font-weight: 300; line-height: 1.45; color: var(--tx);
+    max-width: 840px; margin: 0 auto 20px; position: relative; z-index: 1;
   }
   .conviction blockquote em { color: var(--acc); }
-
   .conviction-sub {
-    font-size: clamp(20px, 1.8vw, 22px);
-    line-height: 1.7; font-style: italic;
-    color: var(--t30); max-width: 560px;
-    margin: 0 auto 40px; position: relative; z-index: 1;
+    font-size: clamp(20px, 1.8vw, 22px); line-height: 1.7; font-style: italic;
+    color: var(--t30); max-width: 560px; margin: 0 auto 40px; position: relative; z-index: 1;
   }
-
   .conviction cite {
     font-family: 'DM Mono', monospace;
-    font-size: 12px; letter-spacing: 0.25em;
-    text-transform: uppercase; color: var(--a40);
-    font-style: normal; position: relative; z-index: 1;
+    font-size: 12px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--a40); font-style: normal; position: relative; z-index: 1;
   }
 
-  .community-top {
+  /* ─── CRAFT ─── */
+  .craft { background: var(--bg); }
+
+  .craft-top {
     display: grid; grid-template-columns: 1fr 1fr;
-    gap: 80px; margin-bottom: 88px; align-items: end;
+    gap: 80px; margin-bottom: 80px; align-items: end;
   }
 
-  .community-top h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(56px, 7vw, 108px);
-    line-height: 0.88; letter-spacing: 0.01em;
-    margin-top: 28px;
-  }
-  .community-top h2 em { color: var(--acc); font-style: italic; }
-
-  .community-desc {
-    font-size: clamp(22px, 2.0vw, 25px);
-    line-height: 1.78; font-style: italic;
-    color: var(--t55); padding-bottom: 8px;
-  }
-  .community-desc strong { color: var(--tx); font-style: normal; font-weight: 600; }
-
-  .room-statement {
+  .craft-specs {
+    display: grid; grid-template-columns: repeat(5, 1fr);
     border: 1px solid var(--a10);
-    padding: 52px 56px;
-    margin-bottom: 3px;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 64px; align-items: center;
+    margin-bottom: 64px;
   }
-
-  .room-statement h3 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 56px; letter-spacing: 0.04em;
-    line-height: 0.9; color: var(--tx);
+  .spec {
+    padding: 40px 32px;
+    border-right: 1px solid var(--a10);
+    display: flex; flex-direction: column; gap: 16px;
+    transition: background 0.3s;
   }
-  .room-statement h3 em { color: var(--acc); font-style: italic; }
-
-  .room-statement p {
-    font-size: clamp(19px, 1.7vw, 22px);
-    line-height: 1.78; font-style: italic; color: var(--t55);
-  }
-  .room-statement p strong { color: var(--tx); font-style: normal; font-weight: 600; }
-
-  .pillars { display: flex; flex-direction: column; }
-  .pillar {
-    display: grid;
-    grid-template-columns: 56px 200px 1fr;
-    align-items: start; gap: 48px;
-    padding: 44px 0;
-    border-bottom: 1px solid var(--a10);
-    transition: padding-left 0.4s ease;
-  }
-  .pillar:first-child { border-top: 1px solid var(--a10); }
-  .pillar:hover { padding-left: 8px; }
-
-  .pillar-num {
+  .spec:last-child { border-right: none; }
+  .spec:hover { background: var(--a05); }
+  .spec-label {
     font-family: 'DM Mono', monospace;
-    font-size: 9px; letter-spacing: 0.25em;
-    color: var(--acc); padding-top: 4px;
+    font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--t30);
   }
-  .pillar h3 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px; letter-spacing: 0.06em;
-    color: var(--tx); line-height: 1;
-  }
-  .pillar p {
-    font-size: clamp(19px, 1.7vw, 22px); line-height: 1.78;
-    color: var(--t55); font-style: italic;
-  }
-
-  .india-strip {
-    border-top: 1px solid var(--a10);
-    padding: 56px;
-    background: var(--bg3);
-    display: flex; align-items: center;
-    justify-content: space-between; gap: 48px;
-  }
-
-  .india-left { display: flex; align-items: center; gap: 32px; }
-
-  .india-line {
-    width: 1px; height: 64px;
-    background: linear-gradient(to bottom, transparent, var(--a40), transparent);
-    flex-shrink: 0;
-  }
-
-  .india-text {
+  .spec-value {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(18px, 2vw, 26px);
-    font-style: italic; color: var(--t55);
-    line-height: 1.5; max-width: 600px;
-  }
-  .india-text em { color: var(--acc); font-style: italic; }
-
-  .india-mono {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px; letter-spacing: 0.22em;
-    text-transform: uppercase; color: var(--t30);
-    white-space: nowrap; flex-shrink: 0;
+    font-size: clamp(17px, 1.6vw, 22px); font-style: italic; color: var(--tx); line-height: 1.3;
   }
 
-  .cta {
-    padding: 160px 56px;
+  .craft-cards {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+  }
+  .craft-card {
+    padding: 48px 44px; border: 1px solid var(--a10);
+    position: relative; transition: border-color 0.4s, background 0.4s;
+  }
+  .craft-card:hover { border-color: var(--a20); background: var(--a05); }
+  .craft-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 2px; height: 0; background: var(--acc); transition: height 0.5s ease;
+  }
+  .craft-card:hover::before { height: 100%; }
+  .craft-card p {
+    font-size: clamp(19px, 1.7vw, 23px);
+    line-height: 1.78; color: var(--t55); font-style: italic;
+  }
+  .craft-card p strong { color: var(--tx); font-style: normal; font-weight: 600; }
+
+  /* ─── OBJECT ─── */
+  .object {
+    background: var(--bg3);
     text-align: center;
-    position: relative; overflow: hidden;
+    overflow: hidden;
+    padding: 160px 56px;
+    position: relative;
   }
-
-  .cta::before {
-    content: 'OUTLYR';
+  .object::before {
+    content: 'OBJECT';
     position: absolute; top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     font-family: 'Bebas Neue', sans-serif;
     font-size: 30vw; letter-spacing: 0.05em;
     color: transparent;
-    -webkit-text-stroke: 1px rgba(200,184,154,0.03);
-    pointer-events: none; white-space: nowrap;
-    user-select: none;
+    -webkit-text-stroke: 1px rgba(200,184,154,0.025);
+    pointer-events: none; user-select: none; white-space: nowrap; line-height: 1;
   }
-
-  .cta-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 15px; letter-spacing: 0.32em;
-    text-transform: uppercase; color: var(--acc);
-    margin-bottom: 40px; position: relative;
-  }
-
-  .cta h2 {
+  .object-inner { position: relative; z-index: 1; }
+  .object-h2 {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(72px, 11vw, 160px);
     line-height: 0.88; letter-spacing: 0.01em;
-    margin-bottom: 40px; position: relative;
+    margin: 40px auto 0;
   }
-  .cta h2 em { color: var(--acc); font-style: italic; }
-  .cta h2 .o {
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(237,232,225,0.2);
+  .object-h2 em { color: var(--acc); font-style: italic; }
+  .object-body-wrap {
+    max-width: 560px; margin: 64px auto 0;
+    display: flex; flex-direction: column; gap: 24px;
   }
-
-  .cta-body {
-    font-size: clamp(17px, 1.5vw, 20px);
-    font-style: italic; color: var(--t55);
-    max-width: 520px; margin: 0 auto 64px;
-    line-height: 1.78; position: relative;
+  .object-body {
+    font-size: clamp(19px, 1.8vw, 24px);
+    line-height: 1.78; font-style: italic; color: var(--t55);
   }
-  .cta-body strong { color: var(--tx); font-style: normal; font-weight: 600; }
-
-  .cta-form {
-    display: flex; max-width: 460px;
-    margin: 0 auto 18px; position: relative;
+  .object-body strong { color: var(--tx); font-style: normal; font-weight: 600; }
+  .object-divider {
+    width: 1px; height: 56px;
+    background: linear-gradient(to bottom, var(--a40), transparent);
+    margin: 56px auto 44px;
   }
-  .cta-form input {
-    flex: 1; background: transparent;
-    border: 1px solid var(--a20); border-right: none;
-    padding: 16px 22px; color: var(--tx);
+  .object-sub {
     font-family: 'DM Mono', monospace;
-    font-size: 11px; letter-spacing: 0.12em;
-    outline: none;
-    transition: border-color 0.3s;
+    font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--acc);
   }
-  .cta-form input::placeholder { color: var(--t30); }
-  .cta-form input:focus { border-color: var(--acc); }
-  .cta-form button {
-    background: var(--acc); color: var(--bg);
-    border: 1px solid var(--acc);
-    padding: 16px 28px;
+
+  /* ─── CIRCLE TEASER ─── */
+  .circle-teaser-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: start;
+  }
+  .circle-right {
+    display: flex; flex-direction: column;
+    align-items: flex-start; gap: 32px;
+  }
+
+  .counter-block {
+    display: flex; align-items: center; gap: 14px;
+    padding: 24px 36px; border: 1px solid var(--a10);
+    position: relative; width: 100%; max-width: 320px;
+  }
+  .counter-block::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 2px; height: 100%; background: var(--acc);
+  }
+  .counter-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(44px, 5vw, 64px);
+    line-height: 1; color: var(--acc); letter-spacing: 0.02em;
+  }
+  .counter-label {
     font-family: 'DM Mono', monospace;
     font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
-    transition: background 0.3s, color 0.3s;
-    white-space: nowrap;
-  }
-  .cta-form button:hover { background: transparent; color: var(--acc); }
-
-  .cta-note {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--t30);
-    margin-bottom: 64px; position: relative;
+    color: var(--t30); line-height: 1.6; max-width: 100px;
   }
 
-  .cta-divider {
-    width: 1px; height: 56px;
-    background: linear-gradient(to bottom, var(--a20), transparent);
-    margin: 0 auto 44px; position: relative;
-  }
-
-  .cta-insta {
-    display: inline-flex; align-items: center; gap: 16px;
-    border: 1px solid var(--a10); padding: 18px 44px;
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--t55); text-decoration: none;
-    transition: border-color 0.3s, color 0.3s, background 0.3s;
-    position: relative;
-  }
-  .cta-insta:hover { border-color: var(--a20); color: var(--acc); background: var(--a05); }
-  .cta-insta .handle { color: var(--acc); }
-  .cta-insta::after {
-    content: '↗'; font-size: 13px;
-    transition: transform 0.3s;
-  }
-  .cta-insta:hover::after { transform: translate(2px,-2px); }
-
-  .cta-apply-btn {
-    display: inline-flex; align-items: center; gap: 14px;
-    border: 1px solid var(--a40);
-    padding: 20px 52px;
+  .btn-gold {
+    display: inline-flex; align-items: center; gap: 12px;
+    border: 1px solid var(--a40); padding: 18px 48px;
     font-family: 'DM Mono', monospace;
     font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
     color: var(--acc); text-decoration: none;
     transition: background 0.3s, border-color 0.3s, color 0.3s;
-    margin-bottom: 64px; position: relative;
   }
-  .cta-apply-btn:hover {
-    background: var(--a05);
-    border-color: var(--acc);
-    color: var(--tx);
-  }
-  .cta-apply-btn span {
-    transition: transform 0.3s;
-    font-size: 14px;
-  }
-  .cta-apply-btn:hover span { transform: translate(3px, -3px); }
+  .btn-gold:hover { background: var(--a05); border-color: var(--acc); color: var(--tx); }
+  .btn-gold span { font-size: 13px; transition: transform 0.3s; }
+  .btn-gold:hover span { transform: translate(3px, -3px); }
 
-  .cta-counter {
-  display: flex; align-items: center;
-  justify-content: center; gap: 14px;
-  margin-bottom: 48px;
-  padding: 28px 48px;
-  border: 1px solid var(--a10);
-  max-width: 360px;
-  margin-left: auto; margin-right: auto;
-  position: relative;
-}
-.cta-counter::before {
-  content: '';
-  position: absolute; top: 0; left: 0;
-  width: 2px; height: 100%;
-  background: var(--acc);
-}
-.cta-counter-num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(48px, 6vw, 72px);
-  line-height: 1; color: var(--acc);
-  letter-spacing: 0.02em;
-  position: relative; z-index: 1;
-}
-.cta-counter-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px; letter-spacing: 0.28em;
-  text-transform: uppercase; color: var(--t30);
-  line-height: 1.6; max-width: 100px;
-  position: relative; z-index: 1;
-}
-
-  footer {
-    border-top: 1px solid var(--a10);
-    padding: 32px 56px;
-    display: flex;
-    align-items: center;
-  }
-  .f-logo {
-    flex: 1;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px; letter-spacing: 0.32em; color: var(--acc);
-  }
-  .f-links {
-    flex: 1; display: flex; gap: 28px; list-style: none; justify-content: center;
-  }
-  .f-links a {
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 16px;
+    border: 1px solid var(--a10); padding: 16px 40px;
     font-family: 'DM Mono', monospace;
-    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
     color: var(--t55); text-decoration: none;
-    transition: color 0.3s;
+    transition: border-color 0.3s, color 0.3s, background 0.3s;
   }
-  .f-links a:hover { color: var(--acc); }
-  .f-copy {
-    flex: 1;
-    text-align: right;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; letter-spacing: 0.12em; color: var(--t55);
-  }
+  .btn-outline:hover { border-color: var(--a20); color: var(--acc); background: var(--a05); }
+  .btn-outline::after { content: '↗'; font-size: 13px; transition: transform 0.3s; }
+  .btn-outline:hover::after { transform: translate(2px,-2px); }
+  .btn-handle { color: var(--acc); }
 
+  /* ─── RESPONSIVE ─── */
   @media (max-width: 960px) {
     .hero { padding: 0 24px; }
     .hero-index { display: none; }
-    section { padding: 88px 24px; }
     .belief { grid-template-columns: 1fr; gap: 48px; }
     .deeper-top { grid-template-columns: 1fr; gap: 32px; margin-bottom: 56px; }
     .domains { grid-template-columns: 1fr 1fr; }
     .contrast { grid-template-columns: 1fr; }
     .contrast-col:first-child { border-right: none; border-bottom: 1px solid var(--a10); }
-    .community-top { grid-template-columns: 1fr; gap: 32px; margin-bottom: 56px; }
-    .room-statement { grid-template-columns: 1fr; gap: 24px; }
-    .pillar { grid-template-columns: 40px 1fr; }
-    .pillar p { grid-column: 2; }
-    .india-strip { flex-direction: column; padding: 48px 24px; align-items: flex-start; }
-    .cta { padding: 100px 24px; }
-    .cta-form { flex-direction: column; }
-    .cta-form input { border-right: 1px solid var(--a20); }
-    footer { flex-direction: column; gap: 20px; text-align: center; padding: 32px 24px; }
-    .f-copy { text-align: center; }
+    .conviction { padding: 100px 24px; }
+    .craft-top { grid-template-columns: 1fr; gap: 32px; margin-bottom: 56px; }
+    .craft-specs { grid-template-columns: repeat(3, 1fr); }
+    .spec:nth-child(3) { border-right: none; }
+    .spec:nth-child(n+4) { border-top: 1px solid var(--a10); }
+    .craft-cards { grid-template-columns: 1fr; }
+    .object { padding: 100px 24px; }
+    .circle-teaser-grid { grid-template-columns: 1fr; gap: 48px; }
+    .btn-gold, .btn-outline { width: 100%; justify-content: center; }
   }
 
   @media (max-width: 560px) {
     .hero-h1 { font-size: clamp(72px, 20vw, 96px); }
+    .hero-actions { flex-direction: column; }
+    .hero-cta { justify-content: center; }
     .domains { grid-template-columns: 1fr; }
+    .craft-specs { grid-template-columns: 1fr 1fr; }
+    .spec:nth-child(even) { border-right: none; }
+    .spec:nth-child(odd) { border-right: 1px solid var(--a10); }
+    .spec:nth-child(3) { border-right: 1px solid var(--a10); border-top: 1px solid var(--a10); }
+    .spec:nth-child(n+3) { border-top: 1px solid var(--a10); }
+    .spec:nth-child(5) { border-right: none; }
   }
 </style>
 
 <script is:inline>
+  // Parallax on hero background word
   window.addEventListener('scroll', function() {
     var hw = document.getElementById('heroBgWord');
     if (hw) {
@@ -863,4 +666,19 @@ try {
       hw.style.opacity = Math.max(0, 1 - window.scrollY / 400);
     }
   });
+
+  // Scroll reveal — fire .revealed on every .reveal element as it enters viewport
+  (function() {
+    var els = document.querySelectorAll('.reveal');
+    if (!els.length) return;
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    els.forEach(function(el) { io.observe(el); });
+  })();
 </script>

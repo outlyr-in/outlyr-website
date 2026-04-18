@@ -5,6 +5,7 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
 
 <BaseLayout title="The Circle — OUTLYR" activeNav="circle">
 
+<!-- PAGE HEADER -->
 <header class="page-header">
   <div class="page-header-inner">
     <p class="tag">// Application</p>
@@ -15,17 +16,85 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
       Answer honestly. There are no right answers, but there are real ones.
     </p>
     <div class="scroll-hint">
-  <span class="scroll-hint-text">Application below</span>
-  <div class="scroll-hint-arrow">
-    <span></span><span></span>
-  </div>
-</div>
+      <span class="scroll-hint-text">What the room is</span>
+      <div class="scroll-hint-arrow">
+        <span></span><span></span>
+      </div>
+    </div>
   </div>
 </header>
 
-<section class="form-section" style="border-top: none;">
-  <div class="form-layout">
+<!-- WHAT THE CIRCLE IS -->
+<section class="about-section">
+  <div class="room-statement reveal">
+    <h2 class="room-h2">Ideas.<br>Not <em>gossip.</em></h2>
+    <p class="room-body">
+      The Circle has one social currency —
+      <strong>depth of thinking and bias toward building.</strong>
+      The founder in Nagpur, the aspirant in Patna, the artist in New York, the athlete in Pune —
+      they don't share a domain. They share a quality of mind.
+      That is what the room is built on. That is what it protects.
+    </p>
+  </div>
 
+  <div class="pillars">
+    <div class="pillar reveal">
+      <span class="pillar-num">I</span>
+      <h3 class="pillar-title">The Lab</h3>
+      <p class="pillar-body">A private space where people who are building things talk to other people who are building things. Not about motivation — about the actual process. The decisions, the contradictions, the things that are working and the things that aren't.</p>
+    </div>
+    <div class="pillar reveal">
+      <span class="pillar-num">II</span>
+      <h3 class="pillar-title">Behind the Build</h3>
+      <p class="pillar-body">Members document their process in real time — the decisions, the pivots, the failures, the breakthroughs. Not polished case studies. Raw, ongoing records of what it actually looks like to build something from the inside.</p>
+    </div>
+    <div class="pillar reveal">
+      <span class="pillar-num">III</span>
+      <h3 class="pillar-title">The Right Room</h3>
+      <p class="pillar-body">Filtered entry. Not by achievement, not by credentials, not by following count. By quality of thinking and direction of movement. The room is only as valuable as the people inside it — and that standard never drops.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CRITERIA -->
+<section class="criteria-section">
+  <div class="criteria-header reveal">
+    <p class="tag">// Entry criteria</p>
+    <h2 class="criteria-h2">What we<br>look <em>for.</em></h2>
+  </div>
+  <div class="criteria-grid">
+    <div class="criterion reveal">
+      <span class="criterion-num">01</span>
+      <p>Quality of thinking over credentials</p>
+    </div>
+    <div class="criterion reveal">
+      <span class="criterion-num">02</span>
+      <p>Direction of movement, not current status</p>
+    </div>
+    <div class="criterion reveal">
+      <span class="criterion-num">03</span>
+      <p>Bias toward contributing, not just observing</p>
+    </div>
+    <div class="criterion reveal">
+      <span class="criterion-num">04</span>
+      <p>Honesty about where you actually are</p>
+    </div>
+  </div>
+  <p class="criteria-note reveal">
+    The room is only as good as the people in it.<br>
+    Standards are not negotiable.
+  </p>
+</section>
+
+<!-- APPLICATION FORM -->
+<section class="form-section">
+  <div class="form-section-header reveal">
+    <p class="tag">// Apply</p>
+    <h2 class="form-h2">The application.</h2>
+    <p class="form-sub">Accepted members receive a private invite. Nothing else happens until then.</p>
+  </div>
+
+  <div class="form-layout">
     <aside class="form-context">
       <div class="context-block">
         <p class="context-label">What we look for</p>
@@ -55,34 +124,27 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
         <input type="hidden" name="redirect" value="false" />
         <input type="checkbox" name="botcheck" style="display:none" />
 
-        <!-- 01 Name -->
         <div class="field-group">
           <label class="field-label" for="name">
             <span class="label-line"><span class="field-num">01</span> Name <span class="req">*</span></span>
           </label>
-          <input class="field-input" type="text" id="name" name="name"
-            placeholder="Your full name" required />
+          <input class="field-input" type="text" id="name" name="name" placeholder="Your full name" required />
         </div>
 
-        <!-- 02 City -->
         <div class="field-group">
           <label class="field-label" for="city">
             <span class="label-line"><span class="field-num">02</span> City <span class="req">*</span></span>
           </label>
-          <input class="field-input" type="text" id="city" name="city"
-            placeholder="Where you're based" required />
+          <input class="field-input" type="text" id="city" name="city" placeholder="Where you're based" required />
         </div>
 
-        <!-- 03 Age -->
         <div class="field-group">
           <label class="field-label" for="age">
             <span class="label-line"><span class="field-num">03</span> Age <span class="req">*</span></span>
           </label>
-          <input class="field-input" type="number" id="age" name="age"
-            placeholder="Your age" required />
+          <input class="field-input" type="number" id="age" name="age" placeholder="Your age" required />
         </div>
 
-        <!-- 04 What you do -->
         <div class="field-group">
           <label class="field-label" for="occupation">
             <span class="label-line"><span class="field-num">04</span> What do you do? <span class="req">*</span></span>
@@ -91,38 +153,31 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
             placeholder="Student, founder, engineer, artist, athlete..." required />
         </div>
 
-        <!-- 05 How did you find Outlyr -->
         <div class="field-group">
           <label class="field-label">
             <span class="label-line"><span class="field-num">05</span> How did you find Outlyr? <span class="req">*</span></span>
           </label>
           <div class="radio-group">
             <label class="radio-label">
-              <input type="radio" name="source" value="Instagram" />
-              <span>Instagram</span>
+              <input type="radio" name="source" value="Instagram" /><span>Instagram</span>
             </label>
             <label class="radio-label">
-              <input type="radio" name="source" value="Word of mouth" />
-              <span>Word of mouth</span>
+              <input type="radio" name="source" value="Word of mouth" /><span>Word of mouth</span>
             </label>
             <label class="radio-label">
-              <input type="radio" name="source" value="Other" />
-              <span>Other</span>
+              <input type="radio" name="source" value="Other" /><span>Other</span>
             </label>
           </div>
         </div>
 
-        <!-- 06 Instagram handle -->
         <div class="field-group">
           <label class="field-label" for="instagram">
             <span class="label-line"><span class="field-num">06</span> Instagram Handle</span>
             <span class="field-hint">Optional — only if you'd like to share.</span>
           </label>
-          <input class="field-input" type="text" id="instagram" name="instagram"
-            placeholder="@yourhandle" />
+          <input class="field-input" type="text" id="instagram" name="instagram" placeholder="@yourhandle" />
         </div>
 
-        <!-- 07 What are you building -->
         <div class="field-group">
           <label class="field-label" for="building">
             <span class="label-line"><span class="field-num">07</span> What are you building or pursuing right now — that most people around you don't know about or wouldn't understand? <span class="req">*</span></span>
@@ -130,10 +185,9 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
           <textarea class="field-textarea" id="building" name="building"
             placeholder="Be specific. Vague answers tell us nothing."
             rows="5" maxlength="1000" required></textarea>
-            <div class="char-counter" data-for="building"><span class="char-count">0</span> / 1000</div>
+          <div class="char-counter" data-for="building"><span class="char-count">0</span> / 1000</div>
         </div>
 
-        <!-- 08 What you wish someone told you -->
         <div class="field-group">
           <label class="field-label" for="lesson">
             <span class="label-line"><span class="field-num">08</span> What do you know now that you wish someone had told you three years ago — and why do you think nobody did? <span class="req">*</span></span>
@@ -141,10 +195,9 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
           <textarea class="field-textarea" id="lesson" name="lesson"
             placeholder="Take your time with this one."
             rows="5" maxlength="1000" required></textarea>
-            <div class="char-counter" data-for="building"><span class="char-count">0</span> / 1000</div>
+          <div class="char-counter" data-for="lesson"><span class="char-count">0</span> / 1000</div>
         </div>
 
-        <!-- 09 Who you're afraid of becoming -->
         <div class="field-group">
           <label class="field-label" for="fear">
             <span class="label-line"><span class="field-num">09</span> What kind of person are you most afraid of turning into — and what are you actively doing to make sure you don't? <span class="req">*</span></span>
@@ -152,10 +205,9 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
           <textarea class="field-textarea" id="fear" name="fear"
             placeholder="Honest answers only."
             rows="5" maxlength="1000" required></textarea>
-            <div class="char-counter" data-for="building"><span class="char-count">0</span> / 1000</div>
+          <div class="char-counter" data-for="fear"><span class="char-count">0</span> / 1000</div>
         </div>
 
-        <!-- 10 What you'd bring -->
         <div class="field-group">
           <label class="field-label" for="bring">
             <span class="label-line"><span class="field-num">10</span> What would you bring to a room of people who are all already working on something? <span class="req">*</span></span>
@@ -163,26 +215,22 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
           <textarea class="field-textarea" id="bring" name="bring"
             placeholder="Not what you've done — what you bring."
             rows="4" maxlength="1000" required></textarea>
-            <div class="char-counter" data-for="building"><span class="char-count">0</span> / 1000</div>
+          <div class="char-counter" data-for="bring"><span class="char-count">0</span> / 1000</div>
         </div>
 
-        <!-- 11 Email -->
         <div class="field-group">
           <label class="field-label" for="email">
             <span class="label-line"><span class="field-num">11</span> Email <span class="req">*</span></span>
           </label>
-          <input class="field-input" type="email" id="email" name="email"
-            placeholder="your@email.com" required />
+          <input class="field-input" type="email" id="email" name="email" placeholder="your@email.com" required />
         </div>
 
-        <!-- 12 WhatsApp -->
         <div class="field-group">
           <label class="field-label" for="whatsapp">
             <span class="label-line"><span class="field-num">12</span> How do we reach you when you're selected? <span class="req">*</span></span>
             <span class="field-hint">WhatsApp number — include country code e.g. +91 98765 43210</span>
           </label>
-          <input class="field-input" type="tel" id="whatsapp" name="whatsapp"
-            placeholder="+91" required />
+          <input class="field-input" type="tel" id="whatsapp" name="whatsapp" placeholder="+91" required />
           <p class="field-disclaimer">Your number will only be used to notify you of your selection. Nothing else.</p>
         </div>
 
@@ -192,9 +240,7 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
             <span id="btn-text">Submit Application</span>
             <span id="btn-arrow">↗</span>
           </button>
-          <p class="form-disclaimer">
-            No newsletters. No data sold. Your application is read by a human.
-          </p>
+          <p class="form-disclaimer">No newsletters. No data sold. Your application is read by a human.</p>
         </div>
       </form>
 
@@ -208,20 +254,18 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
         <a href="/" class="success-link">← Back to Outlyr</a>
       </div>
     </div>
-
   </div>
 </section>
 
 </BaseLayout>
 
 <style>
-  /* ── PAGE HEADER ── */
+  /* ─── PAGE HEADER ─── */
   .page-header {
     padding: 180px 56px 80px;
     border-bottom: 1px solid var(--a10);
   }
   .page-header-inner { max-width: 760px; }
-
   .page-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(72px, 12vw, 160px);
@@ -229,7 +273,6 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
     margin-top: 28px; margin-bottom: 40px;
   }
   .page-title em { color: var(--acc); font-style: italic; }
-
   .page-sub {
     font-size: clamp(18px, 1.8vw, 22px);
     line-height: 1.85; font-style: italic; color: var(--t55);
@@ -238,46 +281,148 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
   .page-sub em { color: var(--tx); font-style: italic; }
 
   .scroll-hint {
-  margin-top: 56px;
-  display: flex; flex-direction: column;
-  align-items: flex-start; gap: 12px;
-}
-.scroll-hint-text {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px; letter-spacing: 0.32em;
-  text-transform: uppercase; color: var(--t55);
-}
-.scroll-hint-arrow {
-  display: flex; flex-direction: column;
-  align-items: center; gap: 4px;
-  animation: nudge 2s ease-in-out infinite;
-}
-.scroll-hint-arrow span {
-  display: block;
-  width: 10px; height: 10px;
-  border-right: 1px solid var(--a40);
-  border-bottom: 1px solid var(--a40);
-  transform: rotate(45deg);
-}
-.scroll-hint-arrow span:last-child {
-  opacity: 0.6;
-  margin-top: -6px;
-}
-@keyframes nudge {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(6px); }
-}
+    margin-top: 56px; display: flex;
+    flex-direction: column; align-items: flex-start; gap: 12px;
+  }
+  .scroll-hint-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.32em;
+    text-transform: uppercase; color: var(--t55);
+  }
+  .scroll-hint-arrow {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 4px;
+    animation: nudge 2s ease-in-out infinite;
+  }
+  .scroll-hint-arrow span {
+    display: block; width: 10px; height: 10px;
+    border-right: 1px solid var(--a40);
+    border-bottom: 1px solid var(--a40);
+    transform: rotate(45deg);
+  }
+  .scroll-hint-arrow span:last-child { opacity: 0.6; margin-top: -6px; }
+  @keyframes nudge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
 
-  /* ── LAYOUT ── */
-  .form-section { padding: 80px 56px 120px; }
+  /* ─── ABOUT SECTION ─── */
+  .about-section { background: var(--bg2); }
+
+  .room-statement {
+    display: grid; grid-template-columns: 1fr 1.6fr;
+    gap: 80px; align-items: center;
+    padding-bottom: 80px; margin-bottom: 0;
+    border-bottom: 1px solid var(--a10);
+    margin-bottom: 0;
+  }
+  .room-h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 6vw, 96px);
+    line-height: 0.88; letter-spacing: 0.02em; color: var(--tx);
+  }
+  .room-h2 em { color: var(--acc); font-style: italic; }
+  .room-body {
+    font-size: clamp(19px, 1.7vw, 22px);
+    line-height: 1.85; font-style: italic; color: var(--t55);
+  }
+  .room-body strong { color: var(--tx); font-style: normal; font-weight: 600; }
+
+  .pillars { display: flex; flex-direction: column; margin-top: 0; }
+  .pillar {
+    display: grid; grid-template-columns: 56px 200px 1fr;
+    align-items: start; gap: 48px;
+    padding: 44px 0;
+    border-bottom: 1px solid var(--a10);
+    transition: padding-left 0.4s ease;
+  }
+  .pillar:first-child { border-top: 1px solid var(--a10); margin-top: 64px; }
+  .pillar:hover { padding-left: 8px; }
+  .pillar-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.25em; color: var(--acc); padding-top: 4px;
+  }
+  .pillar-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px; letter-spacing: 0.06em; color: var(--tx); line-height: 1;
+  }
+  .pillar-body {
+    font-size: clamp(19px, 1.7vw, 22px);
+    line-height: 1.78; color: var(--t55); font-style: italic;
+  }
+
+  /* ─── CRITERIA ─── */
+  .criteria-section { background: var(--bg); }
+
+  .criteria-header { margin-bottom: 56px; }
+  .criteria-header .tag { margin-bottom: 20px; }
+  .criteria-h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 7vw, 96px);
+    line-height: 0.88; letter-spacing: 0.01em; margin-top: 24px;
+  }
+  .criteria-h2 em { color: var(--acc); font-style: italic; }
+
+  .criteria-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2px; margin-bottom: 56px;
+  }
+  .criterion {
+    padding: 44px 36px; border: 1px solid var(--a10);
+    display: flex; flex-direction: column; gap: 20px;
+    transition: background 0.3s, border-color 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .criterion:hover { background: var(--a05); border-color: var(--a20); }
+  .criterion::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 1px; background: var(--acc);
+    transform: scaleX(0); transform-origin: left; transition: transform 0.5s ease;
+  }
+  .criterion:hover::after { transform: scaleX(1); }
+  .criterion-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.28em; color: var(--acc);
+  }
+  .criterion p {
+    font-size: clamp(17px, 1.5vw, 20px);
+    line-height: 1.7; font-style: italic; color: var(--t55);
+  }
+
+  .criteria-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--t30); line-height: 1.9;
+    border-left: 2px solid var(--acc); padding-left: 20px;
+    max-width: 400px;
+  }
+
+  /* ─── FORM SECTION ─── */
+  .form-section { background: var(--bg2); }
+
+  .form-section-header {
+    margin-bottom: 72px; padding-bottom: 56px;
+    border-bottom: 1px solid var(--a10);
+  }
+  .form-section-header .tag { margin-bottom: 20px; }
+  .form-h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 5vw, 80px);
+    line-height: 0.9; letter-spacing: 0.02em; color: var(--tx);
+    margin-top: 20px; margin-bottom: 16px;
+  }
+  .form-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--t30); line-height: 1.7;
+  }
 
   .form-layout {
-    display: grid;
-    grid-template-columns: 280px 1fr;
+    display: grid; grid-template-columns: 280px 1fr;
     gap: 80px; align-items: start;
   }
 
-  /* ── CONTEXT ASIDE ── */
+  /* ─── FORM CONTEXT ASIDE ─── */
   .form-context {
     position: sticky; top: 100px;
     display: flex; flex-direction: column; gap: 48px;
@@ -287,17 +432,14 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
     font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase;
     color: var(--acc); margin-bottom: 20px;
   }
-  .context-list {
-    list-style: none; display: flex; flex-direction: column; gap: 14px;
-  }
+  .context-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
   .context-list li {
     font-size: clamp(15px, 1.3vw, 18px);
     line-height: 1.7; font-style: italic; color: var(--t30);
     padding-left: 18px; position: relative;
   }
   .context-list li::before {
-    content: '—'; position: absolute; left: 0;
-    color: var(--a40); font-style: normal;
+    content: '—'; position: absolute; left: 0; color: var(--a40); font-style: normal;
   }
   .context-note {
     font-family: 'DM Mono', monospace;
@@ -306,32 +448,20 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
     border-left: 1px solid var(--a20); padding-left: 16px;
   }
 
-  /* ── FORM ── */
-  #circle-form {
-    display: flex; flex-direction: column; gap: 56px;
-  }
-  .field-group {
-    display: flex; flex-direction: column; gap: 12px;
-  }
+  /* ─── FORM FIELDS ─── */
+  #circle-form { display: flex; flex-direction: column; gap: 56px; }
+  .field-group { display: flex; flex-direction: column; gap: 12px; }
   .field-label {
     display: flex; flex-direction: column; gap: 8px;
     font-family: 'DM Mono', monospace;
     font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase;
     color: var(--t55); line-height: 1.7;
   }
-  .label-line {
-    display: block;
-  }
+  .label-line { display: block; }
   .field-num { color: var(--acc); margin-right: 10px; }
   .req { color: var(--acc); margin-left: 4px; }
-  .req-note {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--t30);
-    margin-bottom: 8px;
-  }
   .field-hint {
-    font-family: 'DM Mono', monospace;  
+    font-family: 'DM Mono', monospace;
     font-size: 9px; letter-spacing: 0.16em;
     color: var(--t30); text-transform: none; margin-top: 2px;
   }
@@ -342,7 +472,6 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
     margin-top: 8px; line-height: 1.7;
     border-left: 1px solid var(--a20); padding-left: 12px;
   }
-
   .field-input,
   .field-textarea {
     background: transparent; border: none;
@@ -351,25 +480,20 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
     color: var(--tx);
     font-family: 'DM Mono', monospace;
     font-size: clamp(14px, 1.2vw, 16px);
-    font-weight: 300; font-style: normal;
-    outline: none; transition: border-color 0.3s;
-    caret-color: var(--acc);
+    font-weight: 300; outline: none;
+    transition: border-color 0.3s; caret-color: var(--acc);
   }
   .field-input::placeholder,
   .field-textarea::placeholder { color: var(--t30); font-style: italic; }
   .field-input:focus,
   .field-textarea:focus { border-bottom-color: var(--acc); }
   .field-textarea { resize: none; line-height: 1.75; }
-
   input[type=number]::-webkit-inner-spin-button,
   input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; }
   input[type=number] { -moz-appearance: textfield; }
 
-  /* ── RADIO GROUP ── */
-  .radio-group {
-    display: flex; gap: 32px; flex-wrap: wrap;
-    padding: 8px 0;
-  }
+  /* ─── RADIO ─── */
+  .radio-group { display: flex; gap: 32px; flex-wrap: wrap; padding: 8px 0; }
   .radio-label {
     display: flex; align-items: center; gap: 12px;
     font-family: 'Cormorant Garamond', serif;
@@ -381,47 +505,37 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
   .radio-label input[type="radio"] {
     appearance: none; -webkit-appearance: none;
     width: 14px; height: 14px;
-    border: 1px solid var(--a40); border-radius: 50%;
-    flex-shrink: 0;
-    transition: border-color 0.3s, background 0.3s;
-    cursor: crosshair;
+    border: 1px solid var(--a40); border-radius: 50%; flex-shrink: 0;
+    transition: border-color 0.3s, background 0.3s; cursor: crosshair;
   }
-  .radio-label input[type="radio"]:checked {
-    border-color: var(--acc);
-    background: var(--acc);
-  }
+  .radio-label input[type="radio"]:checked { border-color: var(--acc); background: var(--acc); }
   .radio-label input[type="radio"]:checked + span { color: var(--tx); }
 
-  /* ── VALIDATION ── */
-  .field-error {
-    border-bottom-color: rgba(220, 80, 80, 0.6) !important;
-  }
+  /* ─── VALIDATION ─── */
+  .field-error { border-bottom-color: rgba(220, 80, 80, 0.6) !important; }
   .error-msg {
     font-family: 'DM Mono', monospace;
-    font-size: 9px; letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(220, 80, 80, 0.8);
-    margin-top: 8px; display: block;
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(220, 80, 80, 0.8); margin-top: 8px; display: block;
   }
+  .char-counter {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--t30); text-align: right; margin-top: 6px; transition: color 0.3s;
+  }
+  .char-counter.near-limit { color: var(--acc); }
+  .char-counter.at-limit { color: rgba(220, 80, 80, 0.8); }
 
-.char-counter {
-  font-family: 'DM Mono', monospace;
-  font-size: 8px; letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--t30);
-  text-align: right;
-  margin-top: 6px;
-  transition: color 0.3s;
-}
-.char-counter.near-limit { color: var(--acc); }
-.char-counter.at-limit { color: rgba(220, 80, 80, 0.8); }
-
-  /* ── SUBMIT ── */
+  /* ─── SUBMIT ─── */
+  .req-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--t30); margin-bottom: 8px;
+  }
   .form-footer {
     display: flex; flex-direction: column;
     align-items: flex-start; gap: 20px;
-    padding-top: 24px; border-top: 1px solid var(--a10);
-    margin-top: 16px;
+    padding-top: 24px; border-top: 1px solid var(--a10); margin-top: 16px;
   }
   .submit-btn {
     display: inline-flex; align-items: center; gap: 14px;
@@ -441,44 +555,64 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
     text-transform: uppercase; color: var(--t30); line-height: 1.8;
   }
 
-  /* ── SUCCESS ── */
+  /* ─── SUCCESS ─── */
   .success-state { display: none; padding: 80px 0; }
   .success-state.visible { display: block; }
   .success-check {
     font-family: 'DM Mono', monospace;
-    font-size: 11px; letter-spacing: 0.3em;
-    color: var(--acc); margin-bottom: 28px;
+    font-size: 11px; letter-spacing: 0.3em; color: var(--acc); margin-bottom: 28px;
   }
   .success-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(48px, 6vw, 80px);
-    line-height: 0.9; margin-bottom: 32px;
+    font-size: clamp(48px, 6vw, 80px); line-height: 0.9; margin-bottom: 32px;
   }
   .success-body {
     font-size: clamp(20px, 2vw, 26px);
-    line-height: 1.85; font-style: italic;
-    color: var(--t55); margin-bottom: 40px;
+    line-height: 1.85; font-style: italic; color: var(--t55); margin-bottom: 40px;
   }
   .success-link {
     font-family: 'DM Mono', monospace;
     font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
     color: var(--acc); text-decoration: none;
-    border-bottom: 1px solid var(--a20); padding-bottom: 4px;
-    transition: border-color 0.3s;
+    border-bottom: 1px solid var(--a20); padding-bottom: 4px; transition: border-color 0.3s;
   }
   .success-link:hover { border-color: var(--acc); }
 
-  /* ── MOBILE ── */
+  /* ─── RESPONSIVE ─── */
   @media (max-width: 960px) {
     .page-header { padding: 140px 24px 60px; }
-    .form-section { padding: 56px 24px 80px; }
+    .room-statement { grid-template-columns: 1fr; gap: 40px; padding-bottom: 56px; }
+    .pillar { grid-template-columns: 40px 1fr; gap: 24px; }
+    .pillar-title { grid-column: 2; }
+    .pillar-body { grid-column: 2; }
+    .criteria-grid { grid-template-columns: 1fr 1fr; }
     .form-layout { grid-template-columns: 1fr; gap: 48px; }
     .form-context { position: static; }
     .radio-group { gap: 20px; }
   }
+
+  @media (max-width: 560px) {
+    .criteria-grid { grid-template-columns: 1fr; }
+  }
 </style>
 
 <script is:inline>
+  // Scroll reveal
+  (function() {
+    var els = document.querySelectorAll('.reveal');
+    if (!els.length) return;
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    els.forEach(function(el) { io.observe(el); });
+  })();
+
+  // Form logic
   const form = document.getElementById('circle-form');
   const successState = document.getElementById('success-state');
   const submitBtn = document.getElementById('submit-btn');
@@ -527,13 +661,10 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
         showError(field, 'Please enter a valid phone number');
         if (!firstError) firstError = field;
         valid = false;
-      } else if (field.type === 'number') {
-        const val = parseInt(field.value);
-        if (isNaN(val)) {
-          showError(field, 'Please enter a valid age');
-          if (!firstError) firstError = field;
-          valid = false;
-        }
+      } else if (field.type === 'number' && isNaN(parseInt(field.value))) {
+        showError(field, 'Please enter a valid age');
+        if (!firstError) firstError = field;
+        valid = false;
       } else {
         clearError(field);
       }
@@ -562,39 +693,30 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
       valid = false;
     }
 
-    if (firstError) {
-      firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-
+    if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
     return valid;
   }
 
-  // Character counters
+  // Character counters — each textarea gets its own counter
   document.querySelectorAll('.field-textarea[maxlength]').forEach(function(textarea) {
     const counter = document.querySelector('.char-counter[data-for="' + textarea.id + '"]');
     if (!counter) return;
     const max = parseInt(textarea.getAttribute('maxlength'));
     const countEl = counter.querySelector('.char-count');
-
     textarea.addEventListener('input', function() {
       const len = this.value.length;
       countEl.textContent = len;
       counter.classList.remove('near-limit', 'at-limit');
-      if (len >= max) {
-        counter.classList.add('at-limit');
-      } else if (len >= max * 0.85) {
-        counter.classList.add('near-limit');
-      }
+      if (len >= max) counter.classList.add('at-limit');
+      else if (len >= max * 0.85) counter.classList.add('near-limit');
     });
   });
 
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
     if (!validateForm()) return;
-
     submitBtn.disabled = true;
     btnText.textContent = 'Submitting...';
-
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -602,14 +724,8 @@ const WEB3FORMS_KEY = "0e3dc34d-3dac-44e4-b2fb-5f05f45dddf9";
         body: JSON.stringify(Object.fromEntries(new FormData(form))),
       });
       const json = await res.json();
-
       if (json.success) {
-        // Increment counter — fire and forget
-        fetch('/counter', { method: 'POST' })
-          .then(r => r.json())
-          .then(data => console.log('Counter result:', data))
-          .catch(err => console.error('Counter error:', err));
-
+        fetch('/counter', { method: 'POST' }).catch(() => {});
         form.style.display = 'none';
         successState.classList.add('visible');
         window.scrollTo({ top: 0, behavior: 'smooth' });
